@@ -36,24 +36,27 @@ public class SteerForGuildCohesion : SteerForNeighbors2D
 
     private void OnDrawGizmos()
     {
-        switch (_guildMember.Grouping)
+        if (_guildMember != null)
         {
-            case 0:
-                Gizmos.color = Color.red;
-                break;
-            case 1:
-                Gizmos.color = Color.green;
-                break;
-            case 2:
-                Gizmos.color = Color.blue;
-                break;
-            default:
-                Gizmos.color = Color.magenta;
-                break;
+            switch (_guildMember.Grouping)
+            {
+                case 0:
+                    Gizmos.color = Color.red;
+                    break;
+                case 1:
+                    Gizmos.color = Color.green;
+                    break;
+                case 2:
+                    Gizmos.color = Color.blue;
+                    break;
+                default:
+                    Gizmos.color = Color.magenta;
+                    break;
 
 
+            }
+            Gizmos.DrawCube(transform.position, Vector3.one * 0.2f);
         }
-        Gizmos.DrawCube(transform.position, Vector3.one * 0.2f);
 #if DEBUG_COMFORT_DISTANCE
 		Gizmos.color = Color.magenta;
 		Gizmos.DrawWireSphere(transform.position, ComfortDistance);

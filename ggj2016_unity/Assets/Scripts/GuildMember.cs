@@ -62,6 +62,8 @@ public class GuildMember : MonoBehaviour
     public static Dictionary<GameObject, int> CachedGroups = new Dictionary<GameObject, int>();
     public static List<GuildMember> Members = new List<GuildMember>();
 
+    public Collider2D Collider { get; private set; }
+
     [SerializeField]
     private GuildMemberType _type;
     
@@ -70,6 +72,7 @@ public class GuildMember : MonoBehaviour
     public int Grouping;
     public int Health = 100;
     private GuildMemberConfig _overrideConfig;
+    public static GuildMember LeeroyJenkins;
 
     public GuildMemberType MemberType
     {
@@ -86,9 +89,16 @@ public class GuildMember : MonoBehaviour
         }
     }
 
+    public void SetGroup(int group)
+    {
+        Grouping = group;
+        CachedGroups[gameObject] = Grouping;
+    }
+
     public void TakeDamage(int damage)
     {
         Health -= damage;
+        DamageNumberManager.DisplayDamageNumber(damage, transform.position);
     }
 
     public void Heal(int amount)
@@ -100,6 +110,7 @@ public class GuildMember : MonoBehaviour
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _steerForBoss = GetComponent<SteerForBoss>();
+        Collider = GetComponent<Collider2D>();
         _steerForBoss.enabled = false;
 
         Members.Add(this);
@@ -117,7 +128,12 @@ public class GuildMember : MonoBehaviour
 
     private IEnumerator IntroRoutine()
     {
-        yield return new WaitForSeconds(8 + (float)_type * 0.25f);
+        if (LeeroyJenkins != null && LeeroyJenkins != this)
+            yield return new WaitForSeconds(3);
+        if (LeeroyJenkins == this)
+            yield return new WaitForSeconds(6);
+        else
+            yield return new WaitForSeconds(8 + (float)_type * 0.25f);
         _steerForBoss.meleeRange = Config.MeleeRange;
         _steerForBoss.enabled = true;
     }
