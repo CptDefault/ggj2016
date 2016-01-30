@@ -17,9 +17,6 @@ public class DamageNumberManager : MonoBehaviour
     public Color positiveColor;
     public Color negativeColor;
 
-    public Camera mainCamera;
-    public Camera guiCamera;
-
     // guild health
     public GameObject guildHealthPrefab;
 
