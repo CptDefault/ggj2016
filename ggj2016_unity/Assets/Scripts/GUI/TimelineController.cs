@@ -8,19 +8,21 @@ public class TimelineController : MonoBehaviour
     public GameObject TimelineActionPrefab;
 
     private List<TimelineAction> _actions;
-    private UIRoot _uiRoot;
 
-    private float _actionStartingX = 982;
+    private float _actionStartingX = 960;
 
     public float beatsPerMinute = 162;
 
     private float _actionSpawnTimer = 0;
     private float _actionSpawnInterval;
+    private int _beatsPlayed = 0;
+
+    private AudioSource _audio;
 
 	// Use this for initialization
 	void Start () {
 	    _actions = new List<TimelineAction>();
-	    _uiRoot = FindObjectOfType<UIRoot>();
+	    _audio = GetComponent<AudioSource>();
 
 	    _actionSpawnInterval = 60f/beatsPerMinute;
 
@@ -29,14 +31,16 @@ public class TimelineController : MonoBehaviour
 
     public void StartBeats()
     {
-        CreateNewAction();
+        _audio.Play();
 
-        // start beats when song begins
+        _beatsPlayed = 0;
+
+        CreateNewAction();
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    if (_actions.Count > 0 && Time.time >= _actionSpawnTimer)
+	    if (_actions.Count > 0 && _audio.time >= _actionSpawnTimer)
 	    {
 	        CreateNewAction();
 	    }
@@ -52,6 +56,8 @@ public class TimelineController : MonoBehaviour
 
         _actions.Add(action.GetComponent<TimelineAction>());
 
-        _actionSpawnTimer = Time.time + _actionSpawnInterval;
+        _beatsPlayed++;
+
+        _actionSpawnTimer = _beatsPlayed * _actionSpawnInterval;
     }
 }

@@ -78,11 +78,11 @@ public class PlayerInput : MonoBehaviour
                 // check timeline action is in valid position
                 if (CurrentTimelineAction.IsValid())
                 {
-                    Debug.Log("Valid action!");
+//                    Debug.Log("Valid action!");
                 }
                 else
                 {
-                    Debug.Log("Invalid action");
+//                    Debug.Log("Invalid action");
                     CurrentTimelineAction = null;
                 }
             }
