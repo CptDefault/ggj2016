@@ -13,7 +13,7 @@ public class DamageDigit : MonoBehaviour
     private int _currentNumber = -1;
     private float _tickTimer;
 
-    public void Activate(char character, Color col)
+    public void Activate(char character, Color col, float yPos)
     {
         enabled = true;
         label.text = "0";
@@ -24,7 +24,7 @@ public class DamageDigit : MonoBehaviour
         _tickTimer = Time.time + 0.025f;
 
         tweenPosition.from = transform.localPosition;
-        tweenPosition.to = new Vector3(transform.localPosition.x, transform.localPosition.y + 15, 0);
+        tweenPosition.to = new Vector3(transform.localPosition.x, yPos, 0);
 
         tweenAlpha.ResetToBeginning();
         tweenPosition.ResetToBeginning();
