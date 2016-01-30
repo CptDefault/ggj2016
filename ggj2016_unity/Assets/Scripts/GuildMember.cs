@@ -26,6 +26,8 @@ public class GuildMember : MonoBehaviour
         }
     }
 
+    public UISprite healthSprite;
+
     public enum GuildMemberType
     {
         Tank,
@@ -86,6 +88,7 @@ public class GuildMember : MonoBehaviour
                 Grouping = Random.Range(1, 3);
             CachedGroups[gameObject] = Grouping;
             Health = Config.MaxHealth;
+            UpdateHealthBar();
         }
     }
 
@@ -99,11 +102,14 @@ public class GuildMember : MonoBehaviour
     {
         Health -= damage;
         DamageNumberManager.DisplayDamageNumber(-damage, transform.position);
+        UpdateHealthBar();
     }
 
     public void Heal(int amount)
     {
         Health += amount;
+
+        UpdateHealthBar();
     }
 
     protected void Awake()
@@ -114,6 +120,8 @@ public class GuildMember : MonoBehaviour
         _steerForBoss.enabled = false;
 
         Members.Add(this);
+
+        healthSprite = DamageNumberManager.GetGuildHealthBar();
     }
 
     protected void OnDestroy()
@@ -142,5 +150,27 @@ public class GuildMember : MonoBehaviour
     {
         Config = Config.PickUpGroupVariant();
         Health = Config.MaxHealth;
+    }
+
+    protected void Update()
+    {
+        // set health position
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        // need to remove half the width and half the height since our NGUI 0, 0 is in the middle of the screen
+        float screenHeight = Screen.height;
+        float screenWidth = Screen.width;
+        screenPos.x -= (screenWidth / 2.0f);
+        screenPos.y -= (screenHeight / 2.0f);
+
+        screenPos.x *= (1920f / (float)Screen.width);
+        screenPos.y *= (1080f / (float)Screen.height);
+
+        healthSprite.transform.localPosition = screenPos + new Vector3(-healthSprite.width/2f, 40);
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthSprite.width = Health;
     }
 }
