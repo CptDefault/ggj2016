@@ -47,7 +47,7 @@ public class DamageNumber : MonoBehaviour
 
             if ((i <= (digits.Length - 1)) && digits[i] != null)
             {
-                digits[i].Activate(c, color);
+                digits[i].Activate(c, color, position.y + 15);
                 yield return new WaitForSeconds(0.05f);
             }
         }
