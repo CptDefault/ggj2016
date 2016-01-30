@@ -21,6 +21,8 @@ public class GuildMember : MonoBehaviour
 
         public float DamageMultiplyer = 1;
         public int HealAmount = 0;
+        public int DamagePerTick = 500;
+        public int AttackRange = 1;
 
         public GuildMemberConfig PickUpGroupVariant()
         {
@@ -89,6 +91,8 @@ public class GuildMember : MonoBehaviour
     private Biped2D _biped2D;
     private float _lastFullHealth;
 
+    public Transform HealParticles;
+
     public GuildMemberType MemberType
     {
         get {return _type;}
@@ -145,6 +149,9 @@ public class GuildMember : MonoBehaviour
         Health += amount;
         if (Health > Config.MaxHealth)
             Health = Config.MaxHealth;
+
+        HealParticles.gameObject.SetActive(false);
+        HealParticles.gameObject.SetActive(true);
         amount *= Random.Range(980, 1200);
         DamageNumberManager.DisplayDamageNumber(amount, transform.position);
         UpdateHealthBar();
@@ -187,15 +194,20 @@ public class GuildMember : MonoBehaviour
 
         if (Config.HealAmount > 0)
             StartCoroutine(HealRoutine());
+        if (Config.DamagePerTick > 0)
+            StartCoroutine(DamageRoutine());
     }
 
     private IEnumerator HealRoutine()
     {
         while (true)
         {
-            var seconds = TimelineController.OffBeatBy() + OneBeat;
+            var seconds = TimelineController.OffBeatBy() + OneBeat * 2;
             Debug.Log("Heal routine waiting for " + seconds);
             yield return new WaitForSeconds(seconds);
+
+            if(!enabled)
+                yield break;
 
             int mostDamaged = 0;
             GuildMember member = null;
@@ -214,6 +226,23 @@ public class GuildMember : MonoBehaviour
                 member.Heal(Config.HealAmount);
         }
         
+    }
+
+    private IEnumerator DamageRoutine()
+    {
+        if(Random.value > 0.5f)
+            yield return new WaitForSeconds(TimelineController.OffBeatBy() + OneBeat);
+
+        while (true)
+        {
+            var seconds = TimelineController.OffBeatBy() + OneBeat * 2;
+            yield return new WaitForSeconds(seconds);
+
+            if (!enabled)
+                yield break;
+
+            PlayerInput.Instance.DealDamage(Config.DamagePerTick);
+        }
     }
 
     public void PickUpGroup()

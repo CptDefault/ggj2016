@@ -64,13 +64,13 @@ public class PlayerInput : MonoBehaviour
 
     private void ExecuteAttackCooldown(int attackIndex)
     {
-        _abilityCooldowns[attackIndex] = Time.time + 3*TimelineController.Instance.ActionSpawnInterval;
+        _abilityCooldowns[attackIndex] = Time.time + 2f*TimelineController.Instance.ActionSpawnInterval;
         CooldownUI.Instance.abilityCooldownLabels[attackIndex].alpha = 1;
     }
 
     private bool CanUseAbility(int attackIndex)
     {
-        var result = _abilityCooldowns[attackIndex] <= 0;
+        var result = _abilityCooldowns[attackIndex] <= 0 || _abilityCooldowns[attackIndex] + 0.2f > Time.deltaTime;
 
         if(result)
             ExecuteAttackCooldown(attackIndex);
@@ -154,4 +154,13 @@ public class PlayerInput : MonoBehaviour
     }
 
 
+    public void DealDamage(int damagePerSecond)
+    {
+        Health -= damagePerSecond;
+        if (Health < 0)
+        {
+            Health = 0;
+            return;
+        }
+    }
 }

@@ -32,8 +32,9 @@ public class AOE : MonoBehaviour
             DealTeamDamage(amount);
             return;
         }
-        foreach (var guildie in GuildMember.Members)
+        for (int index = 0; index < GuildMember.Members.Count; index++)
         {
+            var guildie = GuildMember.Members[index];
             if (Collider.IsTouching(guildie.Collider))
             {
                 guildie.TakeDamage(amount);

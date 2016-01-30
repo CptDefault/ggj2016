@@ -186,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 124592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.04002, y: 7.0400147, z: 7.0400147}
+  m_LocalScale: {x: 12.760036, y: 7.0400147, z: 7.0400147}
   m_Children: []
   m_Father: {fileID: 402224}
   m_RootOrder: 1
@@ -318,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 6010286}
   HeavyAoe: 0
+  TeamAoe: 1
 --- !u!114 &11423302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 5877060}
   HeavyAoe: 0
+  TeamAoe: 0
 --- !u!114 &11429986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -361,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 6118792}
   HeavyAoe: 1
+  TeamAoe: 0
 --- !u!114 &11456286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdbc064fd08f47079215a80a0a2e6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
+  MoveSpeed: 0.8
   Acceleration: 20
   ForceDiagonalMovement: 0
   DashSpeed: 7
@@ -383,7 +386,19 @@ MonoBehaviour:
     Frames:
     - {fileID: 21300000, guid: 0b307a97e87965a48a85f8aff6465252, type: 3}
     AnimType: 0
-  - FrameRate: 0
+  - FrameRate: 6
+    Heading: {x: 0, y: 1}
+    Frames:
+    - {fileID: 21300000, guid: a5d7c758c3bc3d4438bd9adef46c0cb9, type: 3}
+    - {fileID: 21300000, guid: 060ddba96d5cd83409ac02ca08c449d5, type: 3}
+    - {fileID: 21300000, guid: 10cc2afa9a8fec34e9e1e337d751ccd5, type: 3}
+    - {fileID: 21300000, guid: 67db6df237333944c8dcc92deb2ebadf, type: 3}
+    - {fileID: 21300000, guid: 750f13c6e3c735c449470df72925d74a, type: 3}
+    - {fileID: 21300000, guid: 1399259a2329347459bf496edd0fc1e1, type: 3}
+    - {fileID: 21300000, guid: da7ae4dc2dfd9534997e85d8fd2f6565, type: 3}
+    - {fileID: 21300000, guid: e17aede2cf4818a4eae923ee8b521a45, type: 3}
+    AnimType: 1
+  - FrameRate: 6
     Heading: {x: 0, y: -1}
     Frames:
     - {fileID: 21300000, guid: c602b2097c803a245863ab3ba8dceeec, type: 3}
@@ -423,6 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 6184574}
   HeavyAoe: 1
+  TeamAoe: 0
 --- !u!114 &11495504
 MonoBehaviour:
   m_ObjectHideFlags: 1
