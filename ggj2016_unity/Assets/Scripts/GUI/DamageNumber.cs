@@ -56,7 +56,7 @@ public class DamageNumber : MonoBehaviour
 
         tweenAlpha.PlayReverse();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         foreach (var damageDigit in digits)
         {
@@ -64,6 +64,9 @@ public class DamageNumber : MonoBehaviour
         }
 
         Active = false;
+
+        yield return null;
+
         DamageNumberManager.Instance.Repool(this);
     }
 
