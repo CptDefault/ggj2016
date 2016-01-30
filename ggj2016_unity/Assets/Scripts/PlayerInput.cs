@@ -70,7 +70,7 @@ public class PlayerInput : MonoBehaviour
 
     private bool CanUseAbility(int attackIndex)
     {
-        var result = _abilityCooldowns[attackIndex] <= 0 || _abilityCooldowns[attackIndex] + 0.2f > Time.deltaTime;
+        var result = _abilityCooldowns[attackIndex] <= 0 || _abilityCooldowns[attackIndex] - 0.2f < Time.time;
 
         if(result)
             ExecuteAttackCooldown(attackIndex);
