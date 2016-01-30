@@ -73,6 +73,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 442062}
   - 114: {fileID: 11448230}
+  - 114: {fileID: 11454432}
   m_Layer: 0
   m_Name: FunSystem
   m_TagString: Untagged
@@ -934,7 +935,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1940
+  mWidth: 1939
   mHeight: 38
   mDepth: 0
   autoResizeBoxCollider: 0
@@ -1092,6 +1093,18 @@ MonoBehaviour:
   fpsTweenAlpha: {fileID: 11491916}
   fpsTweenPositionPositive: {fileID: 11410450}
   fpsTweenPositionNegative: {fileID: 11473420}
+--- !u!114 &11454432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9d1d7ea95d4974db17c387893f8af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageNumberPrefab: {fileID: 180674, guid: f559472213297444f811367ab9b5c021, type: 2}
 --- !u!114 &11460430
 MonoBehaviour:
   m_ObjectHideFlags: 1
