@@ -42,7 +42,7 @@ namespace UnitySteer.Behaviors
 
         #endregion
 
-        public CharacterController CharacterController { get; private set; }
+        public UnityEngine.CharacterController CharacterController { get; private set; }
 
         /// <summary>
         /// Last time the vehicle's tick was completed.
@@ -99,7 +99,7 @@ namespace UnitySteer.Behaviors
 
         private void Start()
         {
-            CharacterController = GetComponent<CharacterController>();
+            CharacterController = GetComponent<UnityEngine.CharacterController>();
             PreviousTickTime = Time.time;
         }
 

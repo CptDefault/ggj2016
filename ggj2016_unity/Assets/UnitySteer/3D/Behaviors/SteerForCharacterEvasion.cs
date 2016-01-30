@@ -10,7 +10,7 @@ namespace UnitySteer.Behaviors
     {
         #region Private fields
 
-        [SerializeField] private CharacterController _menace;
+        [SerializeField] private UnityEngine.CharacterController _menace;
 
         [SerializeField] private float _predictionTime;
 
@@ -30,7 +30,7 @@ namespace UnitySteer.Behaviors
         /// <summary>
         /// Vehicle menace
         /// </summary>
-        public CharacterController Menace
+        public UnityEngine.CharacterController Menace
         {
             get { return _menace; }
             set { _menace = value; }
