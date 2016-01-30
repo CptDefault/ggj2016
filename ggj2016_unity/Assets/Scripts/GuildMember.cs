@@ -98,7 +98,7 @@ public class GuildMember : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
-        DamageNumberManager.DisplayDamageNumber(damage, transform.position);
+        DamageNumberManager.DisplayDamageNumber(-damage, transform.position);
     }
 
     public void Heal(int amount)

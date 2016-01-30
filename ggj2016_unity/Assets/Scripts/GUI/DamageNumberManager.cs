@@ -43,7 +43,7 @@ public class DamageNumberManager : MonoBehaviour
         }
 
         // Convert the position from world to screen so we know where to poistion it
-        Vector3 screenPos = Instance.mainCamera.WorldToScreenPoint(position);
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(position);
 
         // need to remove half the width and half the height since our NGUI 0, 0 is in the middle of the screen
         float screenHeight = Screen.height;
