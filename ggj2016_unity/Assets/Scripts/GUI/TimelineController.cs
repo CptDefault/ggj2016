@@ -17,6 +17,11 @@ public class TimelineController : MonoBehaviour
     private float _actionSpawnInterval;
     private int _beatsPlayed = 0;
 
+    public float ActionSpawnInterval
+    {
+        get { return _actionSpawnInterval; }
+    }
+
     private AudioSource _audio;
 
     public static float OffBeatBy()

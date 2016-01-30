@@ -65,7 +65,7 @@ public class PlayerInput : MonoBehaviour
 
     private void ExecuteAttackCooldown(int attackIndex)
     {
-        _abilityCooldowns[attackIndex] = Time.time + 5f;
+        _abilityCooldowns[attackIndex] = Time.time + 3*TimelineController.Instance.ActionSpawnInterval;
         abilityCooldownLabels[attackIndex].alpha = 1;
     }
 
