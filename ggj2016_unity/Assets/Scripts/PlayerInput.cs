@@ -1,4 +1,5 @@
-﻿using InControl;
+﻿using System.Collections.Generic;
+using InControl;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -41,6 +42,9 @@ public class PlayerInput : MonoBehaviour
     public TimelineAction CurrentTimelineAction;
     private BossAttacks _bossAttacks;
 
+    private float[] _abilityCooldowns = new float[4];
+    public UILabel[] abilityCooldownLabels;
+
     protected void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -57,7 +61,22 @@ public class PlayerInput : MonoBehaviour
     {
         if(_inputDevice == null)
             _inputDevice = InputManager.Devices[0]; 
+    }
 
+    private void ExecuteAttackCooldown(int attackIndex)
+    {
+        _abilityCooldowns[attackIndex] = Time.time + 5f;
+        abilityCooldownLabels[attackIndex].alpha = 1;
+    }
+
+    private bool CanUseAbility(int attackIndex)
+    {
+        var result = _abilityCooldowns[attackIndex] <= 0;
+
+        if(result)
+            ExecuteAttackCooldown(attackIndex);
+
+        return result;
     }
 
     protected void Update()
@@ -75,32 +94,46 @@ public class PlayerInput : MonoBehaviour
 
         if (CurrentTimelineAction != null)
         {
-            if (_inputDevice.GetControl(InputControlType.Action1).WasPressed)
-            {
-                // check timeline action is in valid position
-                if (CurrentTimelineAction.IsValid())
-                {
-                    _bossAttacks.Attack(BossAttacks.Attacks.Dash);
-                    // do attack 1
-                }
-            }
-            if (_inputDevice.GetControl(InputControlType.Action2).WasPressed && CurrentTimelineAction.IsValid())
+            if (_inputDevice.GetControl(InputControlType.Action1).WasPressed && CanUseAbility(0) && CurrentTimelineAction.IsValid())
+               _bossAttacks.Attack(BossAttacks.Attacks.Dash);
+            if (_inputDevice.GetControl(InputControlType.Action2).WasPressed && CanUseAbility(1) && CurrentTimelineAction.IsValid())
                 _bossAttacks.Attack(BossAttacks.Attacks.Throw);
-            if (_inputDevice.GetControl(InputControlType.Action3).WasPressed && CurrentTimelineAction.IsValid())
+            if (_inputDevice.GetControl(InputControlType.Action3).WasPressed && CanUseAbility(2) && CurrentTimelineAction.IsValid())
                 _bossAttacks.Attack(BossAttacks.Attacks.Whirlwind);
-            if (_inputDevice.GetControl(InputControlType.Action4).WasPressed && CurrentTimelineAction.IsValid())
+            if (_inputDevice.GetControl(InputControlType.Action4).WasPressed && CanUseAbility(3) && CurrentTimelineAction.IsValid())
                 _bossAttacks.Attack(BossAttacks.Attacks.Smash);
         }
         else
         {
-            if (_inputDevice.GetControl(InputControlType.Action2).WasPressed)
+            if (_inputDevice.GetControl(InputControlType.Action1).WasPressed && CanUseAbility(0))
+            {
+                _bossAttacks.Attack(BossAttacks.Attacks.Dash);
+            }
+            if (_inputDevice.GetControl(InputControlType.Action2).WasPressed && CanUseAbility(1))
                 _bossAttacks.Attack(BossAttacks.Attacks.Throw);
-            if (_inputDevice.GetControl(InputControlType.Action3).WasPressed)
+            if (_inputDevice.GetControl(InputControlType.Action3).WasPressed && CanUseAbility(2))
                 _bossAttacks.Attack(BossAttacks.Attacks.Whirlwind);
-            if (_inputDevice.GetControl(InputControlType.Action4).WasPressed)
+            if (_inputDevice.GetControl(InputControlType.Action4).WasPressed && CanUseAbility(3))
                 _bossAttacks.Attack(BossAttacks.Attacks.Smash);
         }
         
+
+        // update cooldowns
+        for (int i = 0; i < _abilityCooldowns.Length; i++)
+        {
+            if (_abilityCooldowns[i] <= 0)
+                continue;
+
+            if (Time.time >= _abilityCooldowns[i])
+            {
+                _abilityCooldowns[i] = -1;
+                abilityCooldownLabels[i].alpha = 0;
+            }
+            else
+            {
+                abilityCooldownLabels[i].text = ((int)(_abilityCooldowns[i] - Time.time) + 1).ToString();
+            }
+        }
     }
 
     public void SetController(InputDevice inputDevice)
