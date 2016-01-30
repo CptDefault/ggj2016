@@ -43,7 +43,6 @@ public class PlayerInput : MonoBehaviour
     private BossAttacks _bossAttacks;
 
     private float[] _abilityCooldowns = new float[4];
-    public UILabel[] abilityCooldownLabels;
 
     protected void Awake()
     {
@@ -66,7 +65,7 @@ public class PlayerInput : MonoBehaviour
     private void ExecuteAttackCooldown(int attackIndex)
     {
         _abilityCooldowns[attackIndex] = Time.time + 2f*TimelineController.Instance.ActionSpawnInterval;
-        abilityCooldownLabels[attackIndex].alpha = 1;
+        CooldownUI.Instance.abilityCooldownLabels[attackIndex].alpha = 1;
     }
 
     private bool CanUseAbility(int attackIndex)
@@ -127,11 +126,11 @@ public class PlayerInput : MonoBehaviour
             if (Time.time >= _abilityCooldowns[i])
             {
                 _abilityCooldowns[i] = -1;
-                abilityCooldownLabels[i].alpha = 0;
+                CooldownUI.Instance.abilityCooldownLabels[i].alpha = 0;
             }
             else
             {
-                abilityCooldownLabels[i].text = ((int)(_abilityCooldowns[i] - Time.time) + 1).ToString();
+                CooldownUI.Instance.abilityCooldownLabels[i].text = ((int)(_abilityCooldowns[i] - Time.time) + 1).ToString();
             }
         }
     }

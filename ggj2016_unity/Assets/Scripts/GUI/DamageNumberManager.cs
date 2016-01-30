@@ -18,6 +18,9 @@ public class DamageNumberManager : MonoBehaviour
     public Camera mainCamera;
     public Camera guiCamera;
 
+    // guild health
+    public GameObject guildHealthPrefab;
+
     public void Awake()
     {
         Instance = this;
@@ -25,6 +28,11 @@ public class DamageNumberManager : MonoBehaviour
         _uiRoot = FindObjectOfType<UIRoot>();
 
         WarmPool();
+    }
+
+    public static UISprite GetGuildHealthBar()
+    {
+        return ((GameObject) (Instantiate(Instance.guildHealthPrefab, Vector3.zero, Quaternion.identity))).GetComponent<UISprite>();
     }
 
     private static void WarmPool()
