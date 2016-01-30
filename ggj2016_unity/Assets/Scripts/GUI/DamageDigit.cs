@@ -51,5 +51,6 @@ public class DamageDigit : MonoBehaviour
     public void Reset()
     {
         tweenAlpha.ResetToBeginning();
+        label.alpha = 0;
     }
 }
