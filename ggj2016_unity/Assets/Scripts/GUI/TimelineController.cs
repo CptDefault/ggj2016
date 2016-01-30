@@ -25,7 +25,6 @@ public class TimelineController : MonoBehaviour
         time %= 60f/Instance.beatsPerMinute;
         if (time > 60f/Instance.beatsPerMinute/2)
             time -= 60f/Instance.beatsPerMinute;
-        Debug.Log("Off beat by " + time);
         return -time;
     }
 

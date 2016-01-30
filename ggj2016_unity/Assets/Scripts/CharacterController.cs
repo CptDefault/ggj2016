@@ -126,7 +126,7 @@ public class CharacterController : MonoBehaviour
         if (a != null)
         {
             _frameTicker += Time.deltaTime;
-            if (_frameTicker > 1/a.FrameRate)
+            if (_frameTicker > 63f/60/a.FrameRate)
             {
                 _frameNumber++;
                 _frameTicker -= 1 / a.FrameRate;

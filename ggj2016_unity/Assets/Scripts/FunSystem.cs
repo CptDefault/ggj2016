@@ -34,7 +34,7 @@ public class FunSystem : MonoBehaviour
     public void StartFun()
     {
         TotalFun = 0;
-        FunPerSecond = 10;
+        FunPerSecond = 0;//10;
         funPerSecondLabel.text = String.Format("FUN P/S: {0}", FunPerSecond);
         _increaseFunTime = Time.time + 1;
     }

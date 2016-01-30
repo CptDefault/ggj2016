@@ -16,6 +16,14 @@ public class SteerForAOE : Steering2D
     {
         foreach (var activeAoe in AOE.ActiveAoes)
         {
+            if (activeAoe.TeamAoe)
+            {
+
+                return (Vector2)(activeAoe.transform.position - transform.position);
+                continue;
+            }
+            
+
             if (!activeAoe.HeavyAoe && _guildMember.Config.IgnoreLightAoe)
                 continue;
 
