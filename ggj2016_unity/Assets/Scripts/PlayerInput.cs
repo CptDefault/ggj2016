@@ -91,6 +91,15 @@ public class PlayerInput : MonoBehaviour
             if (_inputDevice.GetControl(InputControlType.Action4).WasPressed && CurrentTimelineAction.IsValid())
                 _bossAttacks.Attack(BossAttacks.Attacks.Smash);
         }
+        else
+        {
+            if (_inputDevice.GetControl(InputControlType.Action2).WasPressed)
+                _bossAttacks.Attack(BossAttacks.Attacks.Throw);
+            if (_inputDevice.GetControl(InputControlType.Action3).WasPressed)
+                _bossAttacks.Attack(BossAttacks.Attacks.Whirlwind);
+            if (_inputDevice.GetControl(InputControlType.Action4).WasPressed)
+                _bossAttacks.Attack(BossAttacks.Attacks.Smash);
+        }
         
     }
 

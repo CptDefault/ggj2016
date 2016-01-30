@@ -17,6 +17,7 @@ public class GuildCreator : MonoBehaviour
     public float MemberSpacing = 1.5f;
 
     private int _membersSpawned;
+    public bool EnablePUG;
 
     protected void Awake()
     {
@@ -25,8 +26,10 @@ public class GuildCreator : MonoBehaviour
 
     protected void Start()
     {
-        SpawnGuild();
-        //SpawnPickUpGuild();
+        if(!EnablePUG)
+            SpawnGuild();
+        else
+            SpawnPickUpGuild();
     }
 
     public void SpawnGuild()
@@ -36,6 +39,9 @@ public class GuildCreator : MonoBehaviour
         SpawnGuildMembers(GuildMember.GuildMemberType.MeleeDps, MeleeDpsCount);
         SpawnGuildMembers(GuildMember.GuildMemberType.RangedDps, RangedDpsCount);
         SpawnGuildMembers(GuildMember.GuildMemberType.Healer, HealerCount);
+
+        //GuildMember.LeeroyJenkins = GuildMember.Members[TankCount + 1];
+        //GuildMember.LeeroyJenkins.SetGroup(-1);
     }
 
     public void SpawnPickUpGuild()

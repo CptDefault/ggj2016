@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class TimelineController : MonoBehaviour
 {
-
+    public static TimelineController Instance { get; private set; }
     public GameObject TimelineActionPrefab;
 
     private List<TimelineAction> _actions;
@@ -18,6 +18,21 @@ public class TimelineController : MonoBehaviour
     private int _beatsPlayed = 0;
 
     private AudioSource _audio;
+
+    public static float OffBeatBy()
+    {
+        var time = Instance._audio.time;
+        time %= 60f/Instance.beatsPerMinute;
+        if (time > 60f/Instance.beatsPerMinute/2)
+            time -= 60f/Instance.beatsPerMinute;
+        Debug.Log("Off beat by " + time);
+        return -time;
+    }
+
+    protected void Awake()
+    {
+        Instance = this;
+    }
 
 	// Use this for initialization
 	void Start () {

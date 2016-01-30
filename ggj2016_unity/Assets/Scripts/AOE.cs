@@ -23,4 +23,15 @@ public class AOE : MonoBehaviour
     {
         ActiveAoes.Remove(this);
     }
+
+    public void DealDamage(int amount)
+    {
+        foreach (var guildie in GuildMember.Members)
+        {
+            if (Collider.IsTouching(guildie.Collider))
+            {
+                guildie.TakeDamage(amount);
+            }
+        }
+    }
 }

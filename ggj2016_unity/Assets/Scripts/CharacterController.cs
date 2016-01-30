@@ -27,6 +27,9 @@ public class CharacterController : MonoBehaviour
     public float Acceleration = 5;
     public bool ForceDiagonalMovement;
 
+    public float DashSpeed = 5;
+    public float DashAcceleration = 5;
+
     public Animation[] Anims;
 
     public SpriteRenderer Renderer;
@@ -37,7 +40,9 @@ public class CharacterController : MonoBehaviour
     private int _frameNumber;
     private AnimType _currentAnim;
     private Vector2 _heading;
+    public Vector2 Heading {get { return _heading; }}
     private float _frameTicker;
+    private bool _isDashing;
 
     protected void Awake()
     {
@@ -46,10 +51,12 @@ public class CharacterController : MonoBehaviour
             Renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public void SetDesiredSpeed(Vector2 speed)
+    public void SetDesiredSpeed(Vector2 speed, bool isDashing = false)
     {
-        _desiredSpeed = speed * MoveSpeed;
-
+        if (_isDashing && ! isDashing)
+            return;
+        _isDashing = isDashing;
+        _desiredSpeed = speed * (isDashing ? DashSpeed : MoveSpeed);
 
         if (ForceDiagonalMovement)
         {
@@ -71,7 +78,7 @@ public class CharacterController : MonoBehaviour
     {
         var speed = _rigid.velocity;
 
-        speed += Vector2.ClampMagnitude(_desiredSpeed - speed, Acceleration*Time.fixedDeltaTime);
+        speed += Vector2.ClampMagnitude(_desiredSpeed - speed, (_isDashing ? DashAcceleration : Acceleration)*Time.fixedDeltaTime);
 
         _rigid.velocity = speed;
 
@@ -92,19 +99,23 @@ public class CharacterController : MonoBehaviour
             localScale.x = Mathf.Abs(localScale.x) * (_heading.x < 0 ? -1 : 1);
             Renderer.transform.localScale = localScale;
 
-            if (_heading.x < 0)
+            /*if (_heading.x < 0)
             {
                 _heading.x = -_heading.x;
-            }
+            }*/
         }
 
         var maxDot = float.MinValue;
         Animation a = null;
+        var normHeading = _heading;
+        if (normHeading.x < 0)
+            normHeading.x = -_heading.x;
+
         foreach (var anim in Anims)
         {
             if(anim.AnimType != _currentAnim)
                 continue;
-            var f = Vector3.Dot(anim.Heading.normalized, _heading);
+            var f = Vector3.Dot(anim.Heading.normalized, normHeading);
             if (f > maxDot)
             {
                 maxDot = f;
@@ -125,6 +136,7 @@ public class CharacterController : MonoBehaviour
             Renderer.sprite = a.Frames[_frameNumber];
         }
 
+        _isDashing = false;
     }
 
 }
