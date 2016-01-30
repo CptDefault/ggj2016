@@ -1471,7 +1471,7 @@ static public class NGUITools
 		{
 			TextEditor te = new TextEditor();
 			te.Paste();
-			return te.content.text;
+			return te.text;
 		}
 		set
 		{
