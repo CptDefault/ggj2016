@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class DamageNumber : MonoBehaviour
 {
@@ -19,7 +20,10 @@ public class DamageNumber : MonoBehaviour
 
     private IEnumerator DisplayNumberCoroutine(int number, Vector3 position)
     {
-        transform.localPosition = position;
+        var color = number > 0 ? DamageNumberManager.Instance.positiveColor : DamageNumberManager.Instance.negativeColor;
+        number = Mathf.Abs(number);
+
+        transform.localPosition = position + Vector3.up * 5;
 
         Active = true;
 
@@ -29,6 +33,7 @@ public class DamageNumber : MonoBehaviour
         tweenAlpha.ResetToBeginning();
         tweenAlpha.PlayForward();
 
+
         // break up into parts
         for (int i = 0; i < chars.Length; i++)
         {
@@ -36,8 +41,8 @@ public class DamageNumber : MonoBehaviour
 
             if ((i <= (digits.Length - 1)) && digits[i] != null)
             {
-                digits[i].Activate(c, Color.red);
-                yield return new WaitForSeconds(0.1f);
+                digits[i].Activate(c, color);
+                yield return new WaitForSeconds(0.05f);
             }
         }
 
@@ -56,11 +61,4 @@ public class DamageNumber : MonoBehaviour
         DamageNumberManager.Instance.Repool(this);
     }
 
-
-
-//    public void Update()
-//    {
-//        if(Input.GetKeyDown(KeyCode.K)) 
-//            DisplayNumber(1219871, Vector3.zero);
-//    }
 }

@@ -20,7 +20,7 @@ public class DamageDigit : MonoBehaviour
 
         _finalNumber = (int)char.GetNumericValue(character);
         _currentNumber = 0;
-        _tickTimer = Time.time + 0.05f;
+        _tickTimer = Time.time + 0.025f;
 
         tweenPosition.from = transform.localPosition;
         tweenPosition.to = new Vector3(transform.localPosition.x, transform.localPosition.y + 15, 0);
@@ -37,7 +37,7 @@ public class DamageDigit : MonoBehaviour
         if (_currentNumber != -1 && Time.time > _tickTimer)
         {
             _currentNumber++;
-            _tickTimer = Time.time + 0.01f;
+            _tickTimer = Time.time + 0.025f;
             label.text = "" + _currentNumber;
 
             if (_currentNumber >= _finalNumber)

@@ -941,7 +941,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 51.05263
+  aspectRatio: 51.026318
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1105,6 +1105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageNumberPrefab: {fileID: 180674, guid: f559472213297444f811367ab9b5c021, type: 2}
+  positiveColor: {r: 0.32006922, g: 0.9558824, b: 0.16868511, a: 1}
+  negativeColor: {r: 0.9485294, g: 0.19162005, b: 0.06974482, a: 1}
 --- !u!114 &11460430
 MonoBehaviour:
   m_ObjectHideFlags: 1

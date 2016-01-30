@@ -6,14 +6,23 @@ public class DamageNumberManager : MonoBehaviour
 {
     public static DamageNumberManager Instance;
 
+    private UIRoot _uiRoot;
+
     public static Queue<DamageNumber> _pool;
 
     public GameObject damageNumberPrefab;
+
+    public Color positiveColor;
+    public Color negativeColor;
+
+    public Camera mainCamera;
+    public Camera guiCamera;
 
     public void Awake()
     {
         Instance = this;
         _pool = new Queue<DamageNumber>();
+        _uiRoot = FindObjectOfType<UIRoot>();
 
         WarmPool();
     }
@@ -33,7 +42,19 @@ public class DamageNumberManager : MonoBehaviour
             WarmPool();
         }
 
-        _pool.Dequeue().DisplayNumber(number, position);
+        // Convert the position from world to screen so we know where to poistion it
+        Vector3 screenPos = Instance.mainCamera.WorldToScreenPoint(position);
+
+        // need to remove half the width and half the height since our NGUI 0, 0 is in the middle of the screen
+        float screenHeight = Screen.height;
+        float screenWidth = Screen.width;
+        screenPos.x -= (screenWidth / 2.0f);
+        screenPos.y -= (screenHeight / 2.0f);
+//
+        screenPos.x *= (1920f/(float)Screen.width);
+        screenPos.y *= (1080f/(float)Screen.height);
+
+        _pool.Dequeue().DisplayNumber(number, screenPos);
     }
 
     public void Repool(DamageNumber damageNumber)
@@ -43,7 +64,7 @@ public class DamageNumberManager : MonoBehaviour
 
 //    public void Update()
 //    {
-//        if(Input.GetKeyDown(KeyCode.K)) 
-//            DisplayDamageNumber(1219871, Vector3.zero);
+//        if (Input.GetKeyDown(KeyCode.K))
+//            DisplayDamageNumber(Random.Range(-100000, 100000), PlayerInput.Instance.transform.position);
 //    }
 }

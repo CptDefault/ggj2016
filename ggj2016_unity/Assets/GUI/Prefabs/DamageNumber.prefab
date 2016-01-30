@@ -286,7 +286,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 0.25
+  duration: 0.1
   steeperCurves: 0
   tweenGroup: 0
   onFinished: []
@@ -693,7 +693,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 0.25
+  duration: 0.1
   steeperCurves: 0
   tweenGroup: 0
   onFinished: []
@@ -732,7 +732,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 0.25
+  duration: 0.1
   steeperCurves: 0
   tweenGroup: 0
   onFinished: []
@@ -871,7 +871,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 0.25
+  duration: 0.1
   steeperCurves: 0
   tweenGroup: 0
   onFinished: []
@@ -1200,7 +1200,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 0.25
+  duration: 0.1
   steeperCurves: 0
   tweenGroup: 0
   onFinished: []
@@ -1253,7 +1253,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 0.25
+  duration: 0.1
   steeperCurves: 0
   tweenGroup: 0
   onFinished: []
@@ -1488,7 +1488,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 0.25
+  duration: 0.1
   steeperCurves: 0
   tweenGroup: 0
   onFinished: []
@@ -1582,7 +1582,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: duration
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180674}
