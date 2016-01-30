@@ -64,10 +64,9 @@ public class TimelineAction : MonoBehaviour
             // increase fun when you make a good hit
             // the lower the value, the more fun
             if((int)actionPositionX == 0)
-                FunSystem.Instance.IncrementFunPerSecond(100);      // prevent divide by zero
+                FunSystem.Instance.IncrementFunPerSecond(50);      // prevent divide by zero
             else
-                FunSystem.Instance.IncrementFunPerSecond(100 / (int)actionPositionX);
-
+                FunSystem.Instance.IncrementFunPerSecond((int)(100f /actionPositionX));
 
             _succeeded = true;
             return true;
@@ -79,6 +78,9 @@ public class TimelineAction : MonoBehaviour
             _failed = true;
 
             FunSystem.Instance.IncrementFunPerSecond(-(int)actionPositionX/2);
+
+            PlayerInput.Instance.CurrentTimelineAction = null;
+
             return false;
         }
     }

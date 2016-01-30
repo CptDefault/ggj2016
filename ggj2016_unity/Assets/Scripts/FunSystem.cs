@@ -15,6 +15,12 @@ public class FunSystem : MonoBehaviour
 
     private float _increaseFunTime;
 
+    // popup
+    public UILabel fpsPopupLabel;
+    public TweenAlpha fpsTweenAlpha;
+    public TweenPosition fpsTweenPositionPositive;
+    public TweenPosition fpsTweenPositionNegative;
+
     public void Awake()
     {
         Instance = this;
@@ -28,10 +34,8 @@ public class FunSystem : MonoBehaviour
     public void StartFun()
     {
         TotalFun = 0;
-        FunPerSecond = 0;
-
-        IncrementFunPerSecond(10);
-
+        FunPerSecond = 10;
+        funPerSecondLabel.text = String.Format("FUN P/S: {0}", FunPerSecond);
         _increaseFunTime = Time.time + 1;
     }
 
@@ -40,6 +44,21 @@ public class FunSystem : MonoBehaviour
         FunPerSecond += increment;
 
         funPerSecondLabel.text = String.Format("FUN P/S: {0}", FunPerSecond);
+
+        fpsPopupLabel.text = string.Format("{0}{1} FP/S", increment > 0 ? "+" : "", increment);
+        fpsTweenAlpha.ResetToBeginning();
+        fpsTweenAlpha.PlayForward();
+
+        if (increment > 0)
+        {
+            fpsTweenPositionPositive.ResetToBeginning();
+            fpsTweenPositionPositive.PlayForward();
+        }
+        else
+        {
+            fpsTweenPositionNegative.ResetToBeginning();
+            fpsTweenPositionNegative.PlayForward();
+        }
     }
 
     public void IncreaseFun()

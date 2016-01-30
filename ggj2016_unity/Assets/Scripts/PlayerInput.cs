@@ -78,12 +78,7 @@ public class PlayerInput : MonoBehaviour
                 // check timeline action is in valid position
                 if (CurrentTimelineAction.IsValid())
                 {
-//                    Debug.Log("Valid action!");
-                }
-                else
-                {
-//                    Debug.Log("Invalid action");
-                    CurrentTimelineAction = null;
+                    // do attack 1
                 }
             }
         }
@@ -96,6 +91,7 @@ public class PlayerInput : MonoBehaviour
     }
 
     private void Die() {
+
         if(Alive)
         {
 
