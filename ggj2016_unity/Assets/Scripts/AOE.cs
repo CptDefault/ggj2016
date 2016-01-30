@@ -12,7 +12,7 @@ public class AOE : MonoBehaviour
 
     protected void Awake()
     {
-        Collider = GetComponent<PolygonCollider2D>();
+        if(Collider == null) Collider = GetComponent<Collider2D>();
     }
 
     protected void OnEnable()

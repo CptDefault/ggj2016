@@ -13,6 +13,17 @@ public class GuildMember : MonoBehaviour
 
         public bool MeleeRange;
         public bool IgnoreLightAoe;
+
+        public int MaxHealth = 100;
+
+        public GuildMemberConfig PickUpGroupVariant()
+        {
+            var clone = (GuildMemberConfig)MemberwiseClone();
+            if (Random.value < 0.07f)
+                clone.MeleeRange = true;
+            return clone;
+
+        }
     }
 
     public enum GuildMemberType
@@ -32,14 +43,33 @@ public class GuildMember : MonoBehaviour
 
     public GuildMemberConfig Config
     {
-        get { return Configs[(int) _type]; }
+        get { return _overrideConfig ?? Configs[(int) _type]; }
+        set
+        {
+            _overrideConfig = value;
+
+            Debug.Log("Overriding config");
+
+            if (!Config.MeleeRange) //Worse stats because PUG
+                Grouping = Random.Range(0, 10) < 7 ? 1 : 2;
+            else
+            {
+                Grouping = 0;
+            }
+        }
     }
 
     public static Dictionary<GameObject, int> CachedGroups = new Dictionary<GameObject, int>();
-    [SerializeField] private GuildMemberType _type;
+    public static List<GuildMember> Members = new List<GuildMember>();
+
+    [SerializeField]
+    private GuildMemberType _type;
+    
     private SpriteRenderer _spriteRenderer;
     private SteerForBoss _steerForBoss;
     public int Grouping;
+    public int Health = 100;
+    private GuildMemberConfig _overrideConfig;
 
     public GuildMemberType MemberType
     {
@@ -52,7 +82,18 @@ public class GuildMember : MonoBehaviour
             if (!Config.MeleeRange)
                 Grouping = Random.Range(1, 3);
             CachedGroups[gameObject] = Grouping;
+            Health = Config.MaxHealth;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+    }
+
+    public void Heal(int amount)
+    {
+        Health += amount;
     }
 
     protected void Awake()
@@ -60,6 +101,8 @@ public class GuildMember : MonoBehaviour
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _steerForBoss = GetComponent<SteerForBoss>();
         _steerForBoss.enabled = false;
+
+        Members.Add(this);
     }
 
     protected void OnDestroy()
@@ -75,7 +118,13 @@ public class GuildMember : MonoBehaviour
     private IEnumerator IntroRoutine()
     {
         yield return new WaitForSeconds(8 + (float)_type * 0.25f);
-        _steerForBoss.meleeRange = Configs[(int) _type].MeleeRange;
+        _steerForBoss.meleeRange = Config.MeleeRange;
         _steerForBoss.enabled = true;
+    }
+
+    public void PickUpGroup()
+    {
+        Config = Config.PickUpGroupVariant();
+        Health = Config.MaxHealth;
     }
 }

@@ -28,7 +28,7 @@ public class PlayerInput : MonoBehaviour
         set
         {
             _health = value;
-            healthBarSprite.fillAmount = _health/(float) _health;
+            healthBarSprite.fillAmount = _health/(float) _maxHealth;
 
             if (_health <= 0)
             {
@@ -39,10 +39,12 @@ public class PlayerInput : MonoBehaviour
     }
 
     public TimelineAction CurrentTimelineAction;
+    private BossAttacks _bossAttacks;
 
     protected void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _bossAttacks = GetComponent<BossAttacks>();
 
         Instance = this;
 
@@ -78,9 +80,16 @@ public class PlayerInput : MonoBehaviour
                 // check timeline action is in valid position
                 if (CurrentTimelineAction.IsValid())
                 {
+                    _bossAttacks.Attack(BossAttacks.Attacks.Dash);
                     // do attack 1
                 }
             }
+            if (_inputDevice.GetControl(InputControlType.Action2).WasPressed && CurrentTimelineAction.IsValid())
+                _bossAttacks.Attack(BossAttacks.Attacks.Throw);
+            if (_inputDevice.GetControl(InputControlType.Action3).WasPressed && CurrentTimelineAction.IsValid())
+                _bossAttacks.Attack(BossAttacks.Attacks.Whirlwind);
+            if (_inputDevice.GetControl(InputControlType.Action4).WasPressed && CurrentTimelineAction.IsValid())
+                _bossAttacks.Attack(BossAttacks.Attacks.Smash);
         }
         
     }
