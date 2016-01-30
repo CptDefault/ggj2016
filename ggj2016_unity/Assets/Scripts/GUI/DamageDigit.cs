@@ -15,6 +15,7 @@ public class DamageDigit : MonoBehaviour
 
     public void Activate(char character, Color col)
     {
+        enabled = true;
         label.text = "0";
         label.color = col;
 
@@ -30,6 +31,13 @@ public class DamageDigit : MonoBehaviour
 
         tweenAlpha.PlayForward();
         tweenPosition.PlayForward();
+    }
+    public void Activate(string message, Color col)
+    {
+        enabled = false;
+        label.text = message;
+        label.color = col;
+        label.alpha = 1;
     }
 
     public void Update()

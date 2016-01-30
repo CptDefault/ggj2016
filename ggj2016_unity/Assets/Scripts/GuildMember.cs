@@ -120,7 +120,11 @@ public class GuildMember : MonoBehaviour
         damage = (int)(damage * Config.DamageMultiplyer);
 
         if (Health == Config.MaxHealth)
+        {
+            if (LeeroyJenkins != null)
+                Health /= 10;
             _lastFullHealth = Time.time;
+        }
 
         Health -= damage;
         damage *= Random.Range(980, 1200);
@@ -141,7 +145,28 @@ public class GuildMember : MonoBehaviour
         Members.Remove(this);
         enabled = false;
 
+        StartCoroutine(DeadMessage());
+
         healthSprite.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DeadMessage()
+    {
+        yield return new WaitForSeconds(Random.Range(1, 3f));
+
+        if (Members.Count == 0)
+        {
+            string[] messages = new[] { "you guys suck.", "wow. that went great.", "worst group na.", "this game sucks", "you ar the worst players ive ever scene" };
+            DamageNumberManager.DisplayMessage(messages, transform);  
+
+            yield break;
+        }
+
+        if (Random.value > 0.5f)
+        {
+            string[] messages = new[] { "wtf noobs", "res plz", "how i die?", "healer you noob", "wtf learn to tank", "wheres the heals", "filthy casuals", "bilzard plz nerf","At least I have chicken." };
+            DamageNumberManager.DisplayMessage(messages, transform);            
+        }
     }
 
     public void Heal(int amount)
@@ -186,7 +211,16 @@ public class GuildMember : MonoBehaviour
         if (LeeroyJenkins != null && LeeroyJenkins != this)
             yield return new WaitForSeconds(3);
         if (LeeroyJenkins == this)
-            yield return new WaitForSeconds(6);
+        {
+            yield return new WaitForSeconds(2);
+            var guildLeader = Members[1];
+            DamageNumberManager.DisplayMessage("Okay, so here's the plan", guildLeader.transform);
+            yield return new WaitForSeconds(3);
+            DamageNumberManager.DisplayMessage("I'll run in and tank him first", guildLeader.transform);
+            yield return new WaitForSeconds(1);
+
+            DamageNumberManager.DisplayMessage("LEEEROY JEEENKIINS", transform);
+        }
         else
             yield return new WaitForSeconds(8 + (float)_type * 0.25f);
         _steerForBoss.meleeRange = Config.MeleeRange;
@@ -196,6 +230,26 @@ public class GuildMember : MonoBehaviour
             StartCoroutine(HealRoutine());
         if (Config.DamagePerTick > 0)
             StartCoroutine(DamageRoutine());
+
+        if (LeeroyJenkins == this)
+        {
+            var guildLeader = Members[1];
+            var follower = Members[12];
+            var follower2 = Members[23];
+            yield return new WaitForSeconds(1.5f);
+            DamageNumberManager.DisplayMessage("Oh jeez", guildLeader.transform);
+            yield return new WaitForSeconds(1f);
+            DamageNumberManager.DisplayMessage("Oh jeez, let's go, let's go!", follower.transform);
+            yield return new WaitForSeconds(.5f);
+            DamageNumberManager.DisplayMessage("STICK TO THE PLAN!", guildLeader.transform);
+            yield return new WaitForSeconds(1f);
+            DamageNumberManager.DisplayMessage("Stick to the plan!", follower2.transform);
+            yield return new WaitForSeconds(4f);
+            DamageNumberManager.DisplayMessage("God damn it Leeroy.", guildLeader.transform);
+            yield return new WaitForSeconds(4f);
+            DamageNumberManager.DisplayMessage("At least I have chicken.", transform);
+            
+        }
     }
 
     private IEnumerator HealRoutine()
@@ -276,12 +330,14 @@ public class GuildMember : MonoBehaviour
         healthSprite.gameObject.SetActive(true);
         healthSprite.width = Health;
 
-        StartCoroutine(HideHealthBar());
+        if(Health >= Config.MaxHealth)
+            StartCoroutine(HideHealthBar());
     }
 
     private IEnumerator HideHealthBar()
     {
-        yield return new WaitForSeconds(2);
-        healthSprite.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
+        if (Health >= Config.MaxHealth)
+            healthSprite.gameObject.SetActive(false);
     }
 }

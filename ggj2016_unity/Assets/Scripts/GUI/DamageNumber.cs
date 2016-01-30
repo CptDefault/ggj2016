@@ -18,6 +18,12 @@ public class DamageNumber : MonoBehaviour
         StartCoroutine(DisplayNumberCoroutine(number, position));
     }
 
+    public void DisplayText(string text, Vector3 position)
+    {
+        StartCoroutine(DisplayTextCoroutine(text, position));
+        
+    }
+
     private IEnumerator DisplayNumberCoroutine(int number, Vector3 position)
     {
         var color = number > 0 ? DamageNumberManager.Instance.positiveColor : DamageNumberManager.Instance.negativeColor;
@@ -61,4 +67,26 @@ public class DamageNumber : MonoBehaviour
         DamageNumberManager.Instance.Repool(this);
     }
 
+    private IEnumerator DisplayTextCoroutine(string text, Vector3 position)
+    {
+        var color = Color.white;
+        color.a = 1;
+        transform.localPosition = position + Vector3.up * 5;
+        Active = true;
+        tweenAlpha.ResetToBeginning();
+        tweenAlpha.PlayForward();
+        digits[0].Activate(text, color);
+        for (int i = 0; i < digits.Length; i++)
+        {
+            digits[i].Reset();
+        }
+        print("Showing " + text);
+
+        yield return new WaitForSeconds(2f);
+        tweenAlpha.PlayReverse();
+        yield return new WaitForSeconds(0.5f);
+        Active = false;
+        digits[0].Reset();
+        DamageNumberManager.Instance.Repool(this);
+    }
 }

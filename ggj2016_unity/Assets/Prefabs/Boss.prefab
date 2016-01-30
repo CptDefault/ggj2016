@@ -410,6 +410,18 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 342c0101f223efb44a1e96a24da9f9a4, type: 3}
     - {fileID: 21300000, guid: 616fd15f5b6468e4985c7d6ad2d77344, type: 3}
     AnimType: 1
+  - FrameRate: 6
+    Heading: {x: 1, y: 0}
+    Frames:
+    - {fileID: 21300000, guid: 8a01effa574e7e648a7d5ffc47b95e4c, type: 3}
+    - {fileID: 21300000, guid: f3b775cb3b946a0468032938e504aaad, type: 3}
+    - {fileID: 21300000, guid: 1975ece88bd67ad40a2409e31b40d0b2, type: 3}
+    - {fileID: 21300000, guid: a93d7929c5af9d04a8f2f244c545034a, type: 3}
+    - {fileID: 21300000, guid: 242df6411dd39bf4bbfac464a3325071, type: 3}
+    - {fileID: 21300000, guid: c562cab6418699246a0ef4dfd3b87d1c, type: 3}
+    - {fileID: 21300000, guid: 5203c48fcc2e2d6499c03cf027a4c344, type: 3}
+    - {fileID: 21300000, guid: 68c7099b30fa1fd45a846c580aa5c93e, type: 3}
+    AnimType: 1
   Renderer: {fileID: 21236358}
 --- !u!114 &11464870
 MonoBehaviour:
@@ -463,11 +475,6 @@ MonoBehaviour:
     minPitch: 1
     maxPitch: 1
   CurrentTimelineAction: {fileID: 0}
-  abilityCooldownLabels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!212 &21219654
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -624,7 +631,59 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Heading.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Heading.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a01effa574e7e648a7d5ffc47b95e4c,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Frames.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: f3b775cb3b946a0468032938e504aaad,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Frames.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1975ece88bd67ad40a2409e31b40d0b2,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Frames.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: a93d7929c5af9d04a8f2f244c545034a,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Frames.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 242df6411dd39bf4bbfac464a3325071,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Frames.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: c562cab6418699246a0ef4dfd3b87d1c,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Frames.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5203c48fcc2e2d6499c03cf027a4c344,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: Anims.Array.data[3].Frames.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 68c7099b30fa1fd45a846c580aa5c93e,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198726}

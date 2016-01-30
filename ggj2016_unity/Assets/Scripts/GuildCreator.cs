@@ -19,27 +19,55 @@ public class GuildCreator : MonoBehaviour
     private int _membersSpawned;
     public bool EnablePUG;
     public bool LeeroyJenkins;
+    private AudioSource _audioSource;
+    public bool EndlessMode;
 
     protected void Awake()
     {
         Instance = this;
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     protected void Start()
     {
-        if(!EnablePUG)
+        StartCoroutine(PregameMockup());
+    }
+
+    private IEnumerator PregameMockup()
+    {
+        yield return new WaitForSeconds(1);
+        TimelineController.Instance.StartBeats();
+        yield return new WaitForSeconds(0.5f);
+        if (!EnablePUG)
             SpawnGuild();
         else
             SpawnPickUpGuild();
+
+        for (float t = 0; t < 0.5f; t += Time.deltaTime)
+        {
+            _audioSource.volume = 1 - t / 0.5f;
+            yield return null;
+        }
+        _audioSource.Stop();
+        LeeroyJenkins = false;
+        while (EndlessMode && PlayerInput.Instance.Health > 0)
+        {
+            while (GuildMember.Members.Count > 35)
+                yield return null;
+            SpawnGuild();            
+        }
     }
 
     public void SpawnGuild()
     {
+
         _membersSpawned = 0;
-        SpawnGuildMembers(GuildMember.GuildMemberType.Tank, TankCount);
-        SpawnGuildMembers(GuildMember.GuildMemberType.MeleeDps, MeleeDpsCount);
-        SpawnGuildMembers(GuildMember.GuildMemberType.RangedDps, RangedDpsCount);
-        SpawnGuildMembers(GuildMember.GuildMemberType.Healer, HealerCount);
+            SpawnGuildMembers(GuildMember.GuildMemberType.Tank, TankCount);
+            SpawnGuildMembers(GuildMember.GuildMemberType.MeleeDps, MeleeDpsCount);
+            SpawnGuildMembers(GuildMember.GuildMemberType.RangedDps, RangedDpsCount);
+            SpawnGuildMembers(GuildMember.GuildMemberType.Healer, HealerCount);
+        
 
         if (LeeroyJenkins)
         {        
@@ -50,6 +78,7 @@ public class GuildCreator : MonoBehaviour
 
     public void SpawnPickUpGuild()
     {
+
         for (int i = 0; i < TankCount + MeleeDpsCount + RangedDpsCount + HealerCount; i++)
         {
             var range = Random.Range(0, 25);

@@ -23,6 +23,8 @@ public class TimelineController : MonoBehaviour
     }
 
     private AudioSource _audio;
+    private int _skipCount;
+    public int SkipBeats;
 
     public static float OffBeatBy()
     {
@@ -45,7 +47,7 @@ public class TimelineController : MonoBehaviour
 
 	    _actionSpawnInterval = 60f/beatsPerMinute;
 
-        StartBeats();
+        //StartBeats();
 	}
 
     public void StartBeats()
@@ -53,13 +55,13 @@ public class TimelineController : MonoBehaviour
         _audio.Play();
 
         _beatsPlayed = 0;
-
+        _skipCount = SkipBeats + 1;
         CreateNewAction();
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    if (_actions.Count > 0 && _audio.time >= _actionSpawnTimer)
+        if (_audio.isPlaying && (_actions.Count > 0 || _skipCount >= 0) && _audio.time >= _actionSpawnTimer)
 	    {
 	        CreateNewAction();
 	    }
@@ -67,6 +69,14 @@ public class TimelineController : MonoBehaviour
 
     private void CreateNewAction()
     {
+        _skipCount--;
+        if (_skipCount > 0)
+        {
+            _beatsPlayed++;
+            _actionSpawnTimer = (_beatsPlayed + 0.5f) * _actionSpawnInterval;
+            return;
+        }
+
         GameObject action = (GameObject)Instantiate(TimelineActionPrefab, Vector3.zero, Quaternion.identity);
 
         action.transform.parent = transform;
@@ -77,6 +87,6 @@ public class TimelineController : MonoBehaviour
 
         _beatsPlayed++;
 
-        _actionSpawnTimer = _beatsPlayed * _actionSpawnInterval;
+        _actionSpawnTimer = (_beatsPlayed + 0.5f) * _actionSpawnInterval;
     }
 }

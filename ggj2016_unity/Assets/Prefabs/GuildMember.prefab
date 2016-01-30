@@ -105,7 +105,6 @@ GameObject:
   - 4: {fileID: 471530}
   - 198: {fileID: 19851182}
   - 199: {fileID: 19946090}
-  - 82: {fileID: 8205734}
   m_Layer: 0
   m_Name: L_Recover_hold
   m_TagString: Untagged
@@ -311,80 +310,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.13
---- !u!82 &8205734
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 143362}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e507d722cef0adc4eb4235e006ff8104, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 0.8
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!114 &11404904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -423,6 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56dc0eeda78d824b8980a9232c4b853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSprite: {fileID: 0}
   Configs:
   - Type: 0
     Color: {r: 0.08823532, g: 0.13225162, b: 1, a: 1}
@@ -431,7 +357,7 @@ MonoBehaviour:
     MaxHealth: 200
     DamageMultiplyer: 0.6
     HealAmount: 0
-    DamagePerSecond: 50
+    DamagePerTick: 500
     AttackRange: 1
   - Type: 1
     Color: {r: 1, g: 0.453, b: 0, a: 1}
@@ -440,7 +366,7 @@ MonoBehaviour:
     MaxHealth: 140
     DamageMultiplyer: 1
     HealAmount: 0
-    DamagePerSecond: 50
+    DamagePerTick: 1500
     AttackRange: 1
   - Type: 2
     Color: {r: 1, g: 1, b: 0, a: 1}
@@ -449,7 +375,7 @@ MonoBehaviour:
     MaxHealth: 100
     DamageMultiplyer: 1
     HealAmount: 0
-    DamagePerSecond: 50
+    DamagePerTick: 1000
     AttackRange: 1
   - Type: 3
     Color: {r: 0, g: 1, b: 0.08965516, a: 1}
@@ -458,7 +384,7 @@ MonoBehaviour:
     MaxHealth: 100
     DamageMultiplyer: 1
     HealAmount: 25
-    DamagePerSecond: 50
+    DamagePerTick: 100
     AttackRange: 1
   _type: 0
   Grouping: 0
@@ -11297,6 +11223,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: Configs.Array.data[3].HealAmount
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Configs.Array.data[3].DamagePerTick
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Configs.Array.data[1].DamagePerTick
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Configs.Array.data[2].DamagePerTick
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

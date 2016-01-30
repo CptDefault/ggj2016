@@ -102,7 +102,7 @@ public class PlayerInput : MonoBehaviour
             if (_inputDevice.GetControl(InputControlType.Action4).WasPressed && CanUseAbility(3) && CurrentTimelineAction.IsValid())
                 _bossAttacks.Attack(BossAttacks.Attacks.Smash);
         }
-        else
+        /*else
         {
             if (_inputDevice.GetControl(InputControlType.Action1).WasPressed && CanUseAbility(0))
             {
@@ -114,7 +114,7 @@ public class PlayerInput : MonoBehaviour
                 _bossAttacks.Attack(BossAttacks.Attacks.Whirlwind);
             if (_inputDevice.GetControl(InputControlType.Action4).WasPressed && CanUseAbility(3))
                 _bossAttacks.Attack(BossAttacks.Attacks.Smash);
-        }
+        }*/
         
 
         // update cooldowns
@@ -160,6 +160,10 @@ public class PlayerInput : MonoBehaviour
         if (Health < 0)
         {
             Health = 0;
+            enabled = false;
+            _characterController.enabled = false;
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            _characterController.Renderer.transform.rotation = Quaternion.Euler(0, 0, 90);
             return;
         }
     }

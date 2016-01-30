@@ -27,7 +27,7 @@ public class AOE : MonoBehaviour
 
     public void DealDamage(int amount)
     {
-        if (TeamAoe)
+        if (TeamAoe && GuildMember.Members.Count > 12)
         {
             DealTeamDamage(amount);
             return;
