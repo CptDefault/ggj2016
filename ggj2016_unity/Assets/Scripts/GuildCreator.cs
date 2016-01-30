@@ -26,6 +26,7 @@ public class GuildCreator : MonoBehaviour
     protected void Start()
     {
         SpawnGuild();
+        //SpawnPickUpGuild();
     }
 
     public void SpawnGuild()
@@ -37,7 +38,44 @@ public class GuildCreator : MonoBehaviour
         SpawnGuildMembers(GuildMember.GuildMemberType.Healer, HealerCount);
     }
 
-    private void SpawnGuildMembers(GuildMember.GuildMemberType type, int count)
+    public void SpawnPickUpGuild()
+    {
+        for (int i = 0; i < TankCount + MeleeDpsCount + RangedDpsCount + HealerCount; i++)
+        {
+            var range = Random.Range(0, 25);
+            var goalTanks = TankCount;
+            var goalDps = MeleeDpsCount;
+            var goalRanged = RangedDpsCount;
+            var goalHealer = HealerCount;
+            if (range < goalTanks)
+            {
+                SpawnGuildMembers(GuildMember.GuildMemberType.Tank, 1, true);
+                continue;
+            }
+            range -= goalTanks;
+            if (range < goalDps)
+            {
+                SpawnGuildMembers(GuildMember.GuildMemberType.MeleeDps, 1, true);
+                continue;
+            }
+            range -= goalDps;
+            if (range < goalRanged)
+            {
+                SpawnGuildMembers(GuildMember.GuildMemberType.RangedDps, 1, true);
+                continue;
+            }
+            range -= goalRanged;
+            if (range < goalHealer)
+            {
+                SpawnGuildMembers(GuildMember.GuildMemberType.Healer, 1, true);
+                continue;
+            }
+            range -= goalHealer;
+
+        }
+    }
+
+    private void SpawnGuildMembers(GuildMember.GuildMemberType type, int count, bool pug = false)
     {
         for (int i = 0; i < count; i++)
         {
@@ -48,6 +86,8 @@ public class GuildCreator : MonoBehaviour
             var guildMember = memberGo.GetComponent<GuildMember>();
             guildMember.MemberType = type;
             _membersSpawned++;
+            if (pug)
+                guildMember.PickUpGroup();
         }
     }
 }
