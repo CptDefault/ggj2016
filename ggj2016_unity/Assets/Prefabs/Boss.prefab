@@ -375,9 +375,26 @@ MonoBehaviour:
   MoveSpeed: 2
   Acceleration: 20
   ForceDiagonalMovement: 0
-  DashSpeed: 4
+  DashSpeed: 7
   DashAcceleration: 30
-  Anims: []
+  Anims:
+  - FrameRate: 1
+    Heading: {x: 0, y: 0}
+    Frames:
+    - {fileID: 21300000, guid: 0b307a97e87965a48a85f8aff6465252, type: 3}
+    AnimType: 0
+  - FrameRate: 0
+    Heading: {x: 0, y: -1}
+    Frames:
+    - {fileID: 21300000, guid: c602b2097c803a245863ab3ba8dceeec, type: 3}
+    - {fileID: 21300000, guid: 9cf9f4bbbcd5bf54e8a186b82fc5c94a, type: 3}
+    - {fileID: 21300000, guid: 39c0adfaedf0f8e469bd5468714eea50, type: 3}
+    - {fileID: 21300000, guid: 29c814e141a78fe4992572cbcecacd3a, type: 3}
+    - {fileID: 21300000, guid: 683c978fa929cce4db3822f5b92e4d18, type: 3}
+    - {fileID: 21300000, guid: b498e985a442ca64cbeda9b68d3bf1e2, type: 3}
+    - {fileID: 21300000, guid: 342c0101f223efb44a1e96a24da9f9a4, type: 3}
+    - {fileID: 21300000, guid: 616fd15f5b6468e4985c7d6ad2d77344, type: 3}
+    AnimType: 1
   Renderer: {fileID: 21236358}
 --- !u!114 &11464870
 MonoBehaviour:

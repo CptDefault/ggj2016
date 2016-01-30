@@ -18,6 +18,7 @@ public class GuildCreator : MonoBehaviour
 
     private int _membersSpawned;
     public bool EnablePUG;
+    public bool LeeroyJenkins;
 
     protected void Awake()
     {
@@ -40,8 +41,11 @@ public class GuildCreator : MonoBehaviour
         SpawnGuildMembers(GuildMember.GuildMemberType.RangedDps, RangedDpsCount);
         SpawnGuildMembers(GuildMember.GuildMemberType.Healer, HealerCount);
 
-        //GuildMember.LeeroyJenkins = GuildMember.Members[TankCount + 1];
-        //GuildMember.LeeroyJenkins.SetGroup(-1);
+        if (LeeroyJenkins)
+        {        
+            GuildMember.LeeroyJenkins = GuildMember.Members[TankCount + 1];
+            GuildMember.LeeroyJenkins.SetGroup(-1);
+        }
     }
 
     public void SpawnPickUpGuild()

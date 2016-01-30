@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnitySteer2D.Behaviors;
 
 public class GuildMember : MonoBehaviour
 {
+    private const float OneBeat = 60f / 126;
+
     [System.Serializable]
     public class GuildMemberConfig
     {
@@ -15,6 +18,9 @@ public class GuildMember : MonoBehaviour
         public bool IgnoreLightAoe;
 
         public int MaxHealth = 100;
+
+        public float DamageMultiplyer = 1;
+        public int HealAmount = 0;
 
         public GuildMemberConfig PickUpGroupVariant()
         {
@@ -61,6 +67,11 @@ public class GuildMember : MonoBehaviour
         }
     }
 
+    public int AmountOfDamage
+    {
+        get { return Config.MaxHealth - Health; }
+    }
+
     public static Dictionary<GameObject, int> CachedGroups = new Dictionary<GameObject, int>();
     public static List<GuildMember> Members = new List<GuildMember>();
 
@@ -75,6 +86,8 @@ public class GuildMember : MonoBehaviour
     public int Health = 100;
     private GuildMemberConfig _overrideConfig;
     public static GuildMember LeeroyJenkins;
+    private Biped2D _biped2D;
+    private float _lastFullHealth;
 
     public GuildMemberType MemberType
     {
@@ -100,21 +113,47 @@ public class GuildMember : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        damage = (int)(damage * Config.DamageMultiplyer);
+
+        if (Health == Config.MaxHealth)
+            _lastFullHealth = Time.time;
+
         Health -= damage;
+        damage *= Random.Range(980, 1200);
         DamageNumberManager.DisplayDamageNumber(-damage, transform.position);
+
         UpdateHealthBar();
+        if (Health < 0)
+            Dead();
+    }
+
+    private void Dead()
+    {
+        _biped2D.enabled = false;
+        _spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 90);
+        _biped2D.Rigidbody.isKinematic = true;
+        _biped2D.Collider.enabled = false;
+        CachedGroups.Remove(gameObject);
+        Members.Remove(this);
+        enabled = false;
+
+        healthSprite.gameObject.SetActive(false);
     }
 
     public void Heal(int amount)
     {
         Health += amount;
-
+        if (Health > Config.MaxHealth)
+            Health = Config.MaxHealth;
+        amount *= Random.Range(980, 1200);
+        DamageNumberManager.DisplayDamageNumber(amount, transform.position);
         UpdateHealthBar();
     }
 
     protected void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _biped2D = GetComponent<Biped2D>();
         _steerForBoss = GetComponent<SteerForBoss>();
         Collider = GetComponent<Collider2D>();
         _steerForBoss.enabled = false;
@@ -127,6 +166,7 @@ public class GuildMember : MonoBehaviour
     protected void OnDestroy()
     {
         CachedGroups.Remove(gameObject);
+        Members.Remove(this);
     }
 
     protected void Start()
@@ -144,6 +184,36 @@ public class GuildMember : MonoBehaviour
             yield return new WaitForSeconds(8 + (float)_type * 0.25f);
         _steerForBoss.meleeRange = Config.MeleeRange;
         _steerForBoss.enabled = true;
+
+        if (Config.HealAmount > 0)
+            StartCoroutine(HealRoutine());
+    }
+
+    private IEnumerator HealRoutine()
+    {
+        while (true)
+        {
+            var seconds = TimelineController.OffBeatBy() + OneBeat;
+            Debug.Log("Heal routine waiting for " + seconds);
+            yield return new WaitForSeconds(seconds);
+
+            int mostDamaged = 0;
+            GuildMember member = null;
+            foreach (var guildMember in Members)
+            {
+                if(guildMember._lastFullHealth + 0.8f > Time.time)
+                    continue;
+
+                if (guildMember.AmountOfDamage > mostDamaged)
+                {
+                    mostDamaged = guildMember.AmountOfDamage;
+                    member = guildMember;
+                }
+            }
+            if(member != null)
+                member.Heal(Config.HealAmount);
+        }
+        
     }
 
     public void PickUpGroup()
@@ -154,23 +224,35 @@ public class GuildMember : MonoBehaviour
 
     protected void Update()
     {
-        // set health position
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        if (healthSprite.gameObject.activeSelf)
+        {
+            // set health position
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-        // need to remove half the width and half the height since our NGUI 0, 0 is in the middle of the screen
-        float screenHeight = Screen.height;
-        float screenWidth = Screen.width;
-        screenPos.x -= (screenWidth / 2.0f);
-        screenPos.y -= (screenHeight / 2.0f);
+            // need to remove half the width and half the height since our NGUI 0, 0 is in the middle of the screen
+            float screenHeight = Screen.height;
+            float screenWidth = Screen.width;
+            screenPos.x -= (screenWidth / 2.0f);
+            screenPos.y -= (screenHeight / 2.0f);
 
-        screenPos.x *= (1920f / (float)Screen.width);
-        screenPos.y *= (1080f / (float)Screen.height);
+            screenPos.x *= (1920f / (float)Screen.width);
+            screenPos.y *= (1080f / (float)Screen.height);
 
-        healthSprite.transform.localPosition = screenPos + new Vector3(-healthSprite.width/2f, 40);
+            healthSprite.transform.localPosition = screenPos + new Vector3(-healthSprite.width/2f, 40);
+        }
     }
 
     private void UpdateHealthBar()
     {
+        healthSprite.gameObject.SetActive(true);
         healthSprite.width = Health;
+
+        StartCoroutine(HideHealthBar());
+    }
+
+    private IEnumerator HideHealthBar()
+    {
+        yield return new WaitForSeconds(2);
+        healthSprite.gameObject.SetActive(false);
     }
 }

@@ -9,6 +9,7 @@ public class AOE : MonoBehaviour
     public Collider2D Collider;
 
     public bool HeavyAoe;
+    public bool TeamAoe;
 
     protected void Awake()
     {
@@ -26,12 +27,37 @@ public class AOE : MonoBehaviour
 
     public void DealDamage(int amount)
     {
+        if (TeamAoe)
+        {
+            DealTeamDamage(amount);
+            return;
+        }
         foreach (var guildie in GuildMember.Members)
         {
             if (Collider.IsTouching(guildie.Collider))
             {
                 guildie.TakeDamage(amount);
             }
+        }
+    }
+
+    public void DealTeamDamage(int amount)
+    {
+        var guildiesHit = new List<GuildMember>();
+        foreach (var guildie in GuildMember.Members)
+        {
+            if (Collider.IsTouching(guildie.Collider))
+            {
+                guildiesHit.Add(guildie);
+            }
+        }
+        var count = guildiesHit.Count;
+        if(count == 0)
+            return;
+        Debug.LogFormat( "dealing {0} damage to {1} targets", amount/count, count);
+        foreach (var guildie in guildiesHit)
+        {
+            guildie.TakeDamage(amount / count);
         }
     }
 }
