@@ -43,7 +43,7 @@ MonoBehaviour:
   mSprites:
   - name: abilityBar
     x: 0
-    y: 85
+    y: 467
     width: 113
     height: 43
     borderLeft: 0
@@ -54,9 +54,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: needle
+  - name: healthBar
     x: 116
-    y: 102
+    y: 487
+    width: 122
+    height: 8
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 7
+    paddingTop: 8
+    paddingBottom: 8
+  - name: healthBarBG
+    x: 116
+    y: 498
+    width: 126
+    height: 12
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 5
+    paddingTop: 6
+    paddingBottom: 6
+  - name: needle
+    x: 280
+    y: 484
     width: 6
     height: 26
     borderLeft: 0
@@ -67,9 +93,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: RetroFont
+    x: 0
+    y: 513
+    width: 510
+    height: 511
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 2
+    paddingTop: 1
+    paddingBottom: 0
   - name: timelineBG
     x: 116
-    y: 90
+    y: 475
     width: 9
     height: 9
     borderLeft: 0
@@ -81,8 +120,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: white
-    x: 0
-    y: 50
+    x: 245
+    y: 478
     width: 32
     height: 32
     borderLeft: 0

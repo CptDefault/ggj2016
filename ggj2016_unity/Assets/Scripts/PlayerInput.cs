@@ -15,10 +15,28 @@ public class PlayerInput : MonoBehaviour
 
     // Health + Damage
     public bool Alive { get; private set; }
+    public UISprite healthBarSprite;
     public AudioClipContainer HurtSound;
     public AudioClipContainer DieSound;
 
-    public int health = 1000000;
+    private int _maxHealth = 1000000;
+    private int _health;
+
+    public int Health
+    {
+        get { return _health; }
+        set
+        {
+            _health = value;
+            healthBarSprite.fillAmount = _health/(float) _health;
+
+            if (_health <= 0)
+            {
+                Die();
+
+            }
+        }
+    }
 
     public TimelineAction CurrentTimelineAction;
 
@@ -29,6 +47,8 @@ public class PlayerInput : MonoBehaviour
         Instance = this;
 
         Alive = true;
+
+        _health = _maxHealth;
     }
 
     protected void Start()
@@ -67,8 +87,6 @@ public class PlayerInput : MonoBehaviour
                 }
             }
         }
-
-
         
     }
 
@@ -76,10 +94,6 @@ public class PlayerInput : MonoBehaviour
     {
         _inputDevice = inputDevice;
     }
-
-
-
-
 
     private void Die() {
         if(Alive)

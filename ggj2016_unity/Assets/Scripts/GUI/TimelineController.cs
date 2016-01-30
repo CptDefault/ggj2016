@@ -23,6 +23,8 @@ public class TimelineController : MonoBehaviour
 	    _uiRoot = FindObjectOfType<UIRoot>();
 
 	    _actionSpawnInterval = 60f/beatsPerMinute;
+
+        StartBeats();
 	}
 
     public void StartBeats()

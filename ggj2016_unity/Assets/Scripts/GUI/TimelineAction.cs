@@ -51,7 +51,7 @@ public class TimelineAction : MonoBehaviour
     public bool IsValid()
     {
         // within 27 of the origin
-        if (Mathf.Abs(transform.localPosition.x) < 27)
+        if (Mathf.Abs(transform.localPosition.x) < 35)
         {
             _tweenColor.to = successColor;
             _tweenColor.PlayForward();
