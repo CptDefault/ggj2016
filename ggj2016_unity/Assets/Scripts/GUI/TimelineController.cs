@@ -23,13 +23,18 @@ public class TimelineController : MonoBehaviour
 	    _uiRoot = FindObjectOfType<UIRoot>();
 
 	    _actionSpawnInterval = 60f/beatsPerMinute;
-
-        CreateNewAction();
 	}
+
+    public void StartBeats()
+    {
+        CreateNewAction();
+
+        // start beats when song begins
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Time.time >= _actionSpawnTimer)
+	    if (_actions.Count > 0 && Time.time >= _actionSpawnTimer)
 	    {
 	        CreateNewAction();
 	    }

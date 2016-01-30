@@ -367,7 +367,7 @@ MonoBehaviour:
     relative: 0.5
     absolute: 50
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0.617}
   mPivot: 4
   mWidth: 100
   mHeight: 100
@@ -1375,7 +1375,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 51.236843
+  aspectRatio: 124.1579
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1401,4 +1401,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimelineActionPrefab: {fileID: 100086, guid: 287c664794be164458e872ec0d21aac7, type: 2}
-  beatsPerMinute: 80
+  beatsPerMinute: 165

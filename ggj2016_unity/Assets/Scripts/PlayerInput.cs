@@ -51,16 +51,20 @@ public class PlayerInput : MonoBehaviour
 
         _characterController.SetDesiredSpeed(Vector2.ClampMagnitude(vector2, 1));
 
-        if (_inputDevice.GetControl(InputControlType.Action1).WasPressed)
+        if (CurrentTimelineAction != null)
         {
-            // check timeline action is in valid position
-            if (CurrentTimelineAction != null && CurrentTimelineAction.IsValid())
+            if (_inputDevice.GetControl(InputControlType.Action1).WasPressed)
             {
-                Debug.Log("Valid action!");
-            }
-            else
-            {
-                Debug.Log("Invalid action");
+                // check timeline action is in valid position
+                if (CurrentTimelineAction.IsValid())
+                {
+                    Debug.Log("Valid action!");
+                }
+                else
+                {
+                    Debug.Log("Invalid action");
+                    CurrentTimelineAction = null;
+                }
             }
         }
 

@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 423298}
   - 114: {fileID: 11494032}
   - 114: {fileID: 11446686}
+  - 114: {fileID: 11406274}
   m_Layer: 15
   m_Name: TimelineAction
   m_TagString: Untagged
@@ -29,6 +30,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11406274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa4a4a103e4fed43a7e9e9df4a6915c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - time: 0.4041666
+      value: 0.78749996
+      inSlope: -5.2941217
+      outSlope: -5.2941217
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {r: 0.5068123, g: 0.7405067, b: 0.8014706, a: 1}
+  to: {r: 0.5068123, g: 0.7405067, b: 0.8014706, a: 1}
 --- !u!114 &11446686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -41,6 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
+  successColor: {r: 0.16911763, g: 1, b: 0.31237325, a: 1}
+  failColor: {r: 0.71323526, g: 0, b: 0, a: 1}
 --- !u!114 &11494032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,6 +143,46 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: speed
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: successColor.r
+      value: 0.16911763
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: successColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: successColor.b
+      value: 0.31237325
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: successColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: failColor.r
+      value: 0.71323526
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: failColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: failColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: failColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: duration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
