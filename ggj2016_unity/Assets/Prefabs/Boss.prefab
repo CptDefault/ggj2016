@@ -500,6 +500,10 @@ MonoBehaviour:
   - {fileID: 11479302}
   - {fileID: 11435226}
   - {fileID: 11423302}
+  swordPrefab: {fileID: 194706, guid: 2d85708221e02b44b8174c06c381bf23, type: 2}
+  bossOverheadSound: event:/Boss/Boss_OHSmash
+  bossWhirlwindSound: event:/Boss/Boss_Whirlattack
+  bossDashSound: event:/Boss/Boss_Dash
 --- !u!114 &11435226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -532,9 +536,21 @@ MonoBehaviour:
   DashAcceleration: 30
   Anims:
   - FrameRate: 1
-    Heading: {x: 0, y: 0}
+    Heading: {x: 0, y: -1}
     Frames:
     - {fileID: 21300000, guid: 0b307a97e87965a48a85f8aff6465252, type: 3}
+    LoopFromFrame: 0
+    AnimType: 0
+  - FrameRate: 1
+    Heading: {x: 0, y: 1}
+    Frames:
+    - {fileID: 21300000, guid: a5d7c758c3bc3d4438bd9adef46c0cb9, type: 3}
+    LoopFromFrame: 0
+    AnimType: 0
+  - FrameRate: 1
+    Heading: {x: 1, y: 0}
+    Frames:
+    - {fileID: 21300000, guid: 8a01effa574e7e648a7d5ffc47b95e4c, type: 3}
     LoopFromFrame: 0
     AnimType: 0
   - FrameRate: 6
@@ -588,7 +604,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4969fee7208bef843bce3a9f4094cb8b, type: 3}
     LoopFromFrame: 5
     AnimType: 5
-  - FrameRate: 6
+  - FrameRate: 5
     Heading: {x: 0, y: -1}
     Frames:
     - {fileID: 21300000, guid: f02934bf933d6b54bbc61d562c0dc9d3, type: 3}
@@ -600,6 +616,26 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 3c8cd470790dc6749b9e81b803fc3c81, type: 3}
     LoopFromFrame: 6
     AnimType: 2
+  - FrameRate: 5
+    Heading: {x: 0, y: -1}
+    Frames:
+    - {fileID: 21300000, guid: 8138bb10b3913b245bb9c03add866ed7, type: 3}
+    - {fileID: 21300000, guid: d4c5cba7617cab84d9350e29c611f850, type: 3}
+    - {fileID: 21300000, guid: 328a1b478064f9344b8bdc6a1629ecd5, type: 3}
+    - {fileID: 21300000, guid: e2535c04792e8f14dadcb6ac4f47254d, type: 3}
+    - {fileID: 21300000, guid: d3a6015c234ae31458216d2d1f8c182c, type: 3}
+    - {fileID: 21300000, guid: 36772458aa68845429c9076ced18a9eb, type: 3}
+    - {fileID: 21300000, guid: 9b2316ab17d0bb141902e89823406aeb, type: 3}
+    LoopFromFrame: 6
+    AnimType: 3
+  - FrameRate: 5
+    Heading: {x: 0, y: -1}
+    Frames:
+    - {fileID: 21300000, guid: 821199bad6a038d47b3c835ef2b2621c, type: 3}
+    - {fileID: 21300000, guid: 620a905713a63414bbdcc7f3c2b3635f, type: 3}
+    - {fileID: 21300000, guid: 7f66fb3625ebfe046b150f7465000b4d, type: 3}
+    LoopFromFrame: 2
+    AnimType: 4
   Renderer: {fileID: 21236358}
 --- !u!114 &11464870
 MonoBehaviour:
@@ -8108,7 +8144,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 0b307a97e87965a48a85f8aff6465252, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

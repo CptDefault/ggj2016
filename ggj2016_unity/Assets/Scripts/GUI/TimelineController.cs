@@ -21,7 +21,6 @@ public class TimelineController : MonoBehaviour
 
 //    public TweenScale needleTween;
 
-    public float ActionSpawnInterval
     [FMODUnity.EventRef]
     public string music = "event:/Music/InGame";
     FMOD.Studio.EventInstance musicEv;
@@ -38,7 +37,7 @@ public class TimelineController : MonoBehaviour
         get { return Instance.AudioTime / 60 * Instance.beatsPerMinute * 4; }
     }
 
-    //private AudioSource _audio;
+    private AudioSource _audio;
     private int _skipCount;
     public int SkipBeats;
     private float _audioStartTime = -1;
@@ -72,7 +71,7 @@ public class TimelineController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 	    _actions = new List<TimelineAction>();
-	    //_audio = GetComponent<AudioSource>();
+	    _audio = GetComponent<AudioSource>();
 
 	    _actionSpawnInterval = 60f/beatsPerMinute;
 

@@ -19,6 +19,8 @@ public class BossAttacks : MonoBehaviour
     public AOE[] NonStrictAoe = new AOE[4];
     private CharacterController _characterController;
 
+    public GameObject swordPrefab;
+
 
     [FMODUnity.EventRef]
     public string bossOverheadSound = "event:/Boss/Boss_OHSmash";
@@ -91,9 +93,17 @@ public class BossAttacks : MonoBehaviour
                 break;
             case Attacks.Throw:
                 FMODUnity.RuntimeManager.PlayOneShot(bossDashSound, Camera.main.transform.position);
+                yield return new WaitForSeconds(TimelineController.OffBeatBy() + OneBeat );
+
+                var go = (GameObject)Instantiate(swordPrefab, transform.position, Quaternion.identity);
+                var swordThrow = go.GetComponent<SwordThrow>();
+
                 Debug.Log("Start throw");
-                yield return new WaitForSeconds(TimelineController.OffBeatBy() + OneBeat * 2);
+                yield return new WaitForSeconds(OneBeat * 2.5f);
+
+                swordThrow.ComeBack(OneBeat/2);
                 Debug.Log("End throw");
+                yield return new WaitForSeconds(OneBeat / 2);
 
                 break;
             default:

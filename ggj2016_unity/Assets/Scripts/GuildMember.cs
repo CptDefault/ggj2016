@@ -351,7 +351,7 @@ public class GuildMember : MonoBehaviour
             var seconds = OneBeat * 2;
             yield return new WaitForSeconds(seconds + Random.value);
 
-            if (!enabled)
+            if (!enabled || PlayerInput.Instance.Health <= 0)
                 yield break;
 
             PlayerInput.Instance.DealDamage(Config.DamagePerTick);
