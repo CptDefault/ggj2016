@@ -239,7 +239,12 @@ public class GuildMember : MonoBehaviour
         string hex = color.r.ToString("X2") + color.g.ToString("X2") + color.b.ToString("X2");
         return hex;
     }
- 
+
+    public void EndGameMessage()
+    {
+        if(Health > 0)
+            DisplayChatMessage("GG", this);
+    }
 
     private void DisplayChatMessage(string message, GuildMember member)
     {
@@ -259,6 +264,8 @@ public class GuildMember : MonoBehaviour
 
     private IEnumerator IntroRoutine()
     {
+        FunSystem.RaidStartTime = Time.time;
+        
         if (LeeroyJenkins != null && LeeroyJenkins != this)
             yield return new WaitForSeconds(3);
         if (LeeroyJenkins == this)

@@ -49,7 +49,7 @@ public class DamageNumberManager : MonoBehaviour
         }
     }
 
-    public static void DisplayDamageNumber(int number, Vector3 position)
+    public static void DisplayDamageNumber(int number, Vector3 position, bool boss=false)
     {
         if (_pool.Count == 0)
         {
@@ -68,7 +68,7 @@ public class DamageNumberManager : MonoBehaviour
         screenPos.x *= (1920f/(float)Screen.width);
         screenPos.y *= (1080f/(float)Screen.height);
 
-        _pool.Dequeue().DisplayNumber(number, screenPos);
+        _pool.Dequeue().DisplayNumber(number, screenPos, boss);
     }
 
     public static void DisplayMessage(string[] message, Transform track)

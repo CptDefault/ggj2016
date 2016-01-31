@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class FunSystem : MonoBehaviour
 {
@@ -21,9 +22,18 @@ public class FunSystem : MonoBehaviour
     public TweenPosition fpsTweenPositionPositive;
     public TweenPosition fpsTweenPositionNegative;
 
+    // incoming raid
+    public UILabel incomingRaid;
+    public TweenAlpha incomingRaidAlpha;
+    public UILabel guildNameLabel;
+    public TweenAlpha guildAlpha;
+    public static float RaidStartTime { get; set; }
+
     public void Awake()
     {
         Instance = this;
+        incomingRaid.enabled = false;
+        guildNameLabel.enabled = false;
     }
 
 	// Use this for initialization
@@ -72,14 +82,21 @@ public class FunSystem : MonoBehaviour
 
     public static string GetFinalGrade()
     {
-        if (TotalFun > 20000)
-            return "A+";
-        else if(TotalFun > 10000)
-            return "A";
-        else
+//        if (TotalFun > 20000)
+//            return "A+";
+//        else if(TotalFun > 10000)
+//            return "A";
+//        else
+//        {
+//            return "F";
+//        }
+
+        string[] grades =
         {
-            return "F";
-        }
+            "A+", "A", "B+", "B", "C+", "C", "D+", "D", "E+", "F"
+        };
+
+        return grades[Random.Range(0, grades.Length - 1)];
     }
 	
 	// Update is called once per frame
@@ -90,4 +107,49 @@ public class FunSystem : MonoBehaviour
 	        IncreaseFun();
 	    }
 	}
+
+    public void IncomingRaid(string guildName)
+    {
+        return;
+        
+        guildNameLabel.text = guildName;
+        guildAlpha.ResetToBeginning();
+        guildNameLabel.alpha = 0;
+        incomingRaid.alpha = 0;
+
+        StartCoroutine(IncomingRaidRoutine());
+    }
+
+    private IEnumerator IncomingRaidRoutine()
+    {
+        incomingRaid.enabled = true;
+//        for (int i = 0; i < 10; i++)
+//        {
+//            incomingRaid.enabled = true;
+//            yield return new WaitForSeconds(0.1f);
+//            incomingRaid.enabled = false;
+//        }
+//        incomingRaid.enabled = true;
+
+        incomingRaidAlpha.ResetToBeginning();
+        incomingRaidAlpha.PlayForward();
+
+//        yield return new WaitForSeconds(1f);
+
+        guildNameLabel.enabled = true;
+//        guildAlpha.PlayForward();
+
+        yield return new WaitForSeconds(2.5f);
+
+        incomingRaidAlpha.PlayReverse();
+
+        yield return new WaitForSeconds(0.5f);
+
+//        guildAlpha.PlayReverse();
+
+        yield return new WaitForSeconds(2f);
+
+        incomingRaid.enabled = false;
+        guildNameLabel.enabled = false;
+    }
 }

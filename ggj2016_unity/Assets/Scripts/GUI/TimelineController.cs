@@ -19,6 +19,9 @@ public class TimelineController : MonoBehaviour
     private float _actionSpawnInterval;
     private int _beatsPlayed = 0;
 
+//    public TweenScale needleTween;
+
+    public float ActionSpawnInterval
     [FMODUnity.EventRef]
     public string music = "event:/Music/InGame";
     FMOD.Studio.EventInstance musicEv;
@@ -39,6 +42,18 @@ public class TimelineController : MonoBehaviour
     private int _skipCount;
     public int SkipBeats;
     private float _audioStartTime = -1;
+
+    public AudioClip hitSound;
+
+    public void PlayHitSound()
+    {
+        _audio.PlayOneShot(hitSound);
+    }
+
+    public void PlayOneshot(AudioClip clip)
+    {
+        _audio.PlayOneShot(clip);
+    }
 
     public static float OffBeatBy()
     {
@@ -67,6 +82,11 @@ public class TimelineController : MonoBehaviour
 
         //StartBeats();
 	}
+
+//    public void ResetNeedle()
+//    {
+//        needleTween.ResetToBeginning();        
+//    }
 
     public void StartBeats()
     {
@@ -100,6 +120,8 @@ public class TimelineController : MonoBehaviour
 
     private void CreateNewAction()
     {
+//        needleTween.PlayForward();
+
         _skipCount--;
         if (_skipCount > 0)
         {
@@ -119,6 +141,7 @@ public class TimelineController : MonoBehaviour
         _beatsPlayed++;
 
         _actionSpawnTimer = (_beatsPlayed + 0.5f) * _actionSpawnInterval;
+
     }
 
     public void StopBeats()
