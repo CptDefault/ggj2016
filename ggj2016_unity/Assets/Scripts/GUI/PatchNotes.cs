@@ -54,7 +54,12 @@ public class PatchNotes : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        notesLabel.text = string.Format("Final fun p/s: {0} \n", FunSystem.FunPerSecond);
+        notesLabel.text = string.Format("Raid time: {0:0.00}s \n", Time.time - FunSystem.RaidStartTime);
+        audio.PlayOneShot(textBlip);
+
+        yield return new WaitForSeconds(1f);
+
+        notesLabel.text += string.Format("Final fun p/s: {0} \n", FunSystem.FunPerSecond);
         audio.PlayOneShot(textBlip);
 
         yield return new WaitForSeconds(1f);
@@ -62,12 +67,15 @@ public class PatchNotes : MonoBehaviour
         notesLabel.text += string.Format("Total fun: {0}", FunSystem.TotalFun);
         audio.PlayOneShot(textBlip);
 
+        yield return new WaitForSeconds(1f);
+
+        notesLabel.text += string.Format("Grooviness: {0}", Random.Range(1000,1000000));
+        audio.PlayOneShot(textBlip);
 
         yield return new WaitForSeconds(1f);
 
         notesLabel.text += string.Format("\n\nFinal grade:");
         audio.PlayOneShot(textBlip);
-
 
         yield return new WaitForSeconds(1f);
 

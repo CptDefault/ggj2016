@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class FunSystem : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class FunSystem : MonoBehaviour
     public TweenAlpha incomingRaidAlpha;
     public UILabel guildNameLabel;
     public TweenAlpha guildAlpha;
+    public static float RaidStartTime { get; set; }
 
     public void Awake()
     {
@@ -80,14 +82,21 @@ public class FunSystem : MonoBehaviour
 
     public static string GetFinalGrade()
     {
-        if (TotalFun > 20000)
-            return "A+";
-        else if(TotalFun > 10000)
-            return "A";
-        else
+//        if (TotalFun > 20000)
+//            return "A+";
+//        else if(TotalFun > 10000)
+//            return "A";
+//        else
+//        {
+//            return "F";
+//        }
+
+        string[] grades =
         {
-            return "F";
-        }
+            "A+", "A", "B+", "B", "C+", "C", "D+", "D", "E+", "F"
+        };
+
+        return grades[Random.Range(0, grades.Length - 1)];
     }
 	
 	// Update is called once per frame
@@ -101,6 +110,8 @@ public class FunSystem : MonoBehaviour
 
     public void IncomingRaid(string guildName)
     {
+        return;
+        
         guildNameLabel.text = guildName;
         guildAlpha.ResetToBeginning();
         guildNameLabel.alpha = 0;

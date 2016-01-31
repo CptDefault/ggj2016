@@ -192,11 +192,22 @@ public class PlayerInput : MonoBehaviour
 
         if (Health < 0)
         {
+            // die
+            if (Health != 0)
+            {
+                foreach (var guildMember in GuildMember.Members)
+                {
+                    guildMember.EndGameMessage();
+                }
+            }
+
+
             Health = 0;
             enabled = false;
             _characterController.enabled = false;
             GetComponent<Rigidbody2D>().isKinematic = true;
             _characterController.Renderer.transform.rotation = Quaternion.Euler(0, 0, 90);
+
             return;
         }
         else

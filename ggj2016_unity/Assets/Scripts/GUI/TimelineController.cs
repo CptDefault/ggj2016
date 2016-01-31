@@ -18,7 +18,7 @@ public class TimelineController : MonoBehaviour
     private float _actionSpawnInterval;
     private int _beatsPlayed = 0;
 
-    public TweenScale needleTween;
+//    public TweenScale needleTween;
 
     public float ActionSpawnInterval
     {
@@ -70,10 +70,10 @@ public class TimelineController : MonoBehaviour
         //StartBeats();
 	}
 
-    public void ResetNeedle()
-    {
-        needleTween.ResetToBeginning();        
-    }
+//    public void ResetNeedle()
+//    {
+//        needleTween.ResetToBeginning();        
+//    }
 
     public void StartBeats()
     {
@@ -94,7 +94,7 @@ public class TimelineController : MonoBehaviour
 
     private void CreateNewAction()
     {
-        needleTween.PlayForward();
+//        needleTween.PlayForward();
 
         _skipCount--;
         if (_skipCount > 0)

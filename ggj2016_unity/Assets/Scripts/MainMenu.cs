@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
 
     public UILabel starring;
 
+    public UISprite knight;
+
     private bool _ready;
 
 	// Use this for initialization
@@ -23,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
 	    _ready = false;
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(4.5f);
 
         Camera.main.backgroundColor = Color.white;
         yield return new WaitForSeconds(0.05f);
@@ -32,11 +34,13 @@ public class MainMenu : MonoBehaviour
         strictlySprite.color = Color.yellow;
         bossroomSprite.color = Color.yellow;
 
+	    knight.enabled = true;
+
 	    starring.gameObject.SetActive(true);
 
         Camera.main.backgroundColor = new Color(238f/255, 32f/255, 0);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         pressAnyLbel.PlayForward();
 
@@ -45,9 +49,9 @@ public class MainMenu : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    if (_ready && Input.anyKey)
-	    {
-	        Application.LoadLevel(1);
-	    }
+//	    if (_ready && Input.anyKey)
+//	    {
+//	        Application.LoadLevel(1);
+//	    }
 	}
 }
