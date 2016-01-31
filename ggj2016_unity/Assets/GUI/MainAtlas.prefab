@@ -94,10 +94,10 @@ MonoBehaviour:
     paddingTop: 6
     paddingBottom: 6
   - name: healthPip
-    x: 35
-    y: 316
-    width: 14
-    height: 12
+    x: 65
+    y: 341
+    width: 7
+    height: 6
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -146,8 +146,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 0
   - name: timelineBG
-    x: 65
-    y: 338
+    x: 35
+    y: 319
     width: 9
     height: 9
     borderLeft: 0
