@@ -40,9 +40,15 @@ public class CharacterController : MonoBehaviour
 
     public SpriteRenderer Renderer;
 
-    public AnimType WeaponAnimation {set { _currentAnim = value;
-        _frameNumber = 0;
-    }}
+    public AnimType WeaponAnimation
+    {
+        set
+        {
+            _currentAnim = value;
+            _frameNumber = 0;
+        }
+        get { return _currentAnim;}
+    }
 
     private Rigidbody2D _rigid;
     private Vector2 _desiredSpeed;

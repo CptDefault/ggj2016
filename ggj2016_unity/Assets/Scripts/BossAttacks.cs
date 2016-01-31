@@ -53,12 +53,15 @@ public class BossAttacks : MonoBehaviour
                 damage = 50*13; //Team damage; expect to hit about 13
                 yield return new WaitForSeconds(TimelineController.OffBeatBy() + OneBeat * 3f);
                 aoe.DealDamage(damage);
+                ScreenShakeManager.ScreenShake(3);
+                yield return new WaitForSeconds(0.2f);
                 break;
             case Attacks.Whirlwind:
                 int tickAmount = 15;
                 for (int i = 0; i < tickAmount; i++)
                 {
                     yield return new WaitForSeconds((i == 0 ? TimelineController.OffBeatBy() : 0) + OneBeat/4);
+                    ScreenShakeManager.ScreenShakeContinuous(.7f);
                     aoe.DealDamage(damage / tickAmount);
                 }
                 break;
@@ -68,8 +71,15 @@ public class BossAttacks : MonoBehaviour
                 while (Time.time < goUntil)
                 {
                     _characterController.SetDesiredSpeed(heading, true);
+                    ScreenShakeManager.ScreenShakeContinuous(.7f);
                     yield return null;
                 }
+                break;
+            case Attacks.Throw:
+                Debug.Log("Start throw");
+                yield return new WaitForSeconds(TimelineController.OffBeatBy() + OneBeat * 2);
+                Debug.Log("End throw");
+
                 break;
             default:
                 yield return new WaitForSeconds(TimelineController.OffBeatBy() + OneBeat);
@@ -77,7 +87,8 @@ public class BossAttacks : MonoBehaviour
                 break;
         }
 
-        _characterController.WeaponAnimation = CharacterController.AnimType.Idle;
+        if (_characterController.WeaponAnimation == CharacterController.AnimType.Smash + (int)attack)
+            _characterController.WeaponAnimation = CharacterController.AnimType.Idle;
         aoe.gameObject.SetActive(false);
     }
 }

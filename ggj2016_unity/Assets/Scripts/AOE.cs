@@ -55,7 +55,7 @@ public class AOE : MonoBehaviour
         var count = guildiesHit.Count;
         if(count == 0)
             return;
-        Debug.LogFormat( "dealing {0} damage to {1} targets", amount/count, count);
+        //Debug.LogFormat( "dealing {0} damage to {1} targets", amount/count, count);
         foreach (var guildie in guildiesHit)
         {
             guildie.TakeDamage(amount / count);

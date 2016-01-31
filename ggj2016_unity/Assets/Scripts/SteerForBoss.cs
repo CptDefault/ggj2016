@@ -64,7 +64,8 @@ public class SteerForBoss : Steering2D
 
 
         var sqrMagnitude = (transform.position - new Vector3(6, .6f)).sqrMagnitude;
-        while (sqrMagnitude > 0.5f)
+        float timeout = Time.time + 10;
+        while (sqrMagnitude > 0.5f && timeout > Time.time)
         {
             sqrMagnitude = (transform.position - new Vector3(6, .6f)).sqrMagnitude;
 
@@ -72,7 +73,8 @@ public class SteerForBoss : Steering2D
         }
         PlayerInput.Instance.GetComponent<Collider2D>().enabled = false;
         bossFightStage = BossFightStage.Leave;
-        while (transform.position.x < 12)
+        timeout = Time.time + 5;
+        while (transform.position.x < 12 && timeout > Time.time)
             yield return null;
 
         if (GuildMember.Members.Count <= 1)
