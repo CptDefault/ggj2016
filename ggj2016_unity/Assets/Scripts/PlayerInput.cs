@@ -71,6 +71,20 @@ public class PlayerInput : MonoBehaviour
 
     private bool CanUseAbility(int attackIndex)
     {
+        // fixed actions
+        if (CurrentTimelineAction != null && CurrentTimelineAction.IsFixed)
+        {
+            if (CurrentTimelineAction.fixedAction == attackIndex)
+            {
+                _abilityCooldowns[attackIndex] = -1;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
         var result = _abilityCooldowns[attackIndex] <= 0 || _abilityCooldowns[attackIndex] - 0.2f < Time.time;
 
         if(result)

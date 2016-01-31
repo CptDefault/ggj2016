@@ -6,6 +6,7 @@ public class TimelineController : MonoBehaviour
 {
     public static TimelineController Instance { get; private set; }
     public GameObject TimelineActionPrefab;
+    public GameObject FixedTimelineActionPrefab;
 
     private List<TimelineAction> _actions;
 
@@ -82,7 +83,7 @@ public class TimelineController : MonoBehaviour
             return;
         }
 
-        GameObject action = (GameObject)Instantiate(TimelineActionPrefab, Vector3.zero, Quaternion.identity);
+        GameObject action = (GameObject)Instantiate((_beatsPlayed % 10 == 0) ? FixedTimelineActionPrefab : TimelineActionPrefab, Vector3.zero, Quaternion.identity);
 
         action.transform.parent = transform;
         action.transform.localScale = Vector3.one;

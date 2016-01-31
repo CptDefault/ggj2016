@@ -340,7 +340,7 @@ public class GuildMember : MonoBehaviour
     private void UpdateHealthBar()
     {
         healthSprite.gameObject.SetActive(true);
-        healthSprite.width = Health;
+        healthSprite.width = Health/2;
 
         if(Health >= Config.MaxHealth)
             StartCoroutine(HideHealthBar());
