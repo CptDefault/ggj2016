@@ -87,6 +87,10 @@ public class DamageNumberManager : MonoBehaviour
     }
     private static IEnumerator DisplayTextCoroutine(string text, Transform track)
     {
+        if(track == null)
+            yield break;
+
+
         var uiLabel = _messagePool.Dequeue();
         if(uiLabel.transform.parent == null)
             yield return null;

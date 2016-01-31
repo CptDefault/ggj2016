@@ -39,6 +39,7 @@ public class GuildCreator : MonoBehaviour
         _audioSource.Play();
         _audioSource.volume = 1;
         TimelineController.Instance.StopBeats();
+        FunSystem.Instance.fpsPopupLabel.text = "";
         if (PlayerInput.Instance.Health <= 0)
         {
             yield return new WaitForSeconds(2);

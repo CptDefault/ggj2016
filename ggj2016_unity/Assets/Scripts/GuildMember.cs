@@ -103,7 +103,7 @@ public class GuildMember : MonoBehaviour
     private static string[] RandomNames =
     {
         "CoolWizard69", "MLG-Lord", "Yeezus928", "xXx_JeffRocks_xXx", "MysteryMeat9821", "FererroRochel_95", "MarsBarWarrior", "AlphabetJack", "DeezNuts", "MicrosoftSam", "DolanTremp54", 
-        "Scratch", "Doopy", "Poopy", "Sneezy-2873", "UnwisestDaisy", "MothQueen4eva", "OozyPlace", "TitMonster5000"
+        "Scratch", "Doopy", "Poopy_Demon", "Sneezy-2873", "UnwisestDaisy75", "MothQueen4eva", "OozyPlace6234", "TitMonster5000", "SaltyTears8273"
     };
 
     public GuildMemberType MemberType

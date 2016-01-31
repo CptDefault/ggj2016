@@ -193,7 +193,7 @@ public class PlayerInput : MonoBehaviour
         if (Health < 0)
         {
             // die
-            if (Health != 0)
+            if (enabled)
             {
                 foreach (var guildMember in GuildMember.Members)
                 {
