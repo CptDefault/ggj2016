@@ -220,6 +220,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 442598}
   - 114: {fileID: 11488186}
+  - 114: {fileID: 11468068}
   m_Layer: 15
   m_Name: Needle
   m_TagString: Untagged
@@ -486,6 +487,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 465080}
   - 114: {fileID: 11480190}
+  - 114: {fileID: 11429966}
   m_Layer: 15
   m_Name: IncomingRaid
   m_TagString: Untagged
@@ -881,7 +883,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5376, z: 0}
+  m_LocalPosition: {x: 0, y: -5385, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 459406}
@@ -1690,7 +1692,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 51.05263
+  aspectRatio: 253.3421
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1745,6 +1747,45 @@ MonoBehaviour:
   cancelKey0: 27
   cancelKey1: 331
   autoHideCursor: 1
+--- !u!114 &11429966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175000}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 1
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: 0
+  to: 1
 --- !u!114 &11433864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2177,6 +2218,7 @@ MonoBehaviour:
   fpsTweenPositionPositive: {fileID: 11410450}
   fpsTweenPositionNegative: {fileID: 11473420}
   incomingRaid: {fileID: 11480190}
+  incomingRaidAlpha: {fileID: 11429966}
   guildNameLabel: {fileID: 11459834}
   guildAlpha: {fileID: 11480130}
 --- !u!114 &11450240
@@ -2630,6 +2672,46 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11468068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139422}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e7459110b9666449485c40f25362a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.25
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {x: 1, y: 1, z: 1}
+  to: {x: 1.25, y: 1.25, z: 1.25}
+  updateTable: 0
 --- !u!114 &11468784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3121,7 +3203,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 2
+  duration: 1.5
   steeperCurves: 0
   tweenGroup: 0
   onFinished: []
@@ -3143,11 +3225,11 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 459406}
     relative: 0.5
-    absolute: -500
+    absolute: -453
   rightAnchor:
     target: {fileID: 459406}
     relative: 0.5
-    absolute: 500
+    absolute: 453
   bottomAnchor:
     target: {fileID: 459406}
     relative: 0.5
@@ -3155,17 +3237,17 @@ MonoBehaviour:
   topAnchor:
     target: {fileID: 459406}
     relative: 0.5
-    absolute: 94
+    absolute: 76
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1000
-  mHeight: 144
+  mWidth: 906
+  mHeight: 126
   mDepth: 24
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.9444447
+  aspectRatio: 7.1904764
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11499086, guid: 5b4c1536ad0859748a8200928d8785de, type: 2}
@@ -3210,6 +3292,7 @@ MonoBehaviour:
   FixedTimelineActionPrefab: {fileID: 146144, guid: 8df4658b13d3aa349945c835b134a450,
     type: 2}
   beatsPerMinute: 31.5
+  needleTween: {fileID: 11468068}
   SkipBeats: 2
   hitSound: {fileID: 8300000, guid: f02caae0124755549bb3aa4543d17111, type: 3}
 --- !u!114 &11487274

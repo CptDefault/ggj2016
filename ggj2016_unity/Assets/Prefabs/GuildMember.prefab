@@ -173,7 +173,7 @@ GameObject:
   - 4: {fileID: 478564}
   - 212: {fileID: 21237418}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,9 +225,9 @@ Transform:
   m_LocalPosition: {x: 2.17, y: 0.33, z: 0.03515625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 478564}
   - {fileID: 471530}
   - {fileID: 476426}
+  - {fileID: 478564}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &451176
@@ -283,7 +283,7 @@ Transform:
   - {fileID: 454952}
   - {fileID: 451176}
   m_Father: {fileID: 450934}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &476426
 Transform:
   m_ObjectHideFlags: 1
@@ -291,11 +291,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.003, y: -0.112, z: 0}
+  m_LocalPosition: {x: 0.003, y: -0.044, z: 0}
   m_LocalScale: {x: 1.0950657, y: 0.6747287, z: 1}
   m_Children: []
   m_Father: {fileID: 450934}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &478564
 Transform:
   m_ObjectHideFlags: 1
@@ -303,11 +303,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.084, z: 0}
-  m_LocalScale: {x: 2, y: 3, z: 1}
+  m_LocalPosition: {x: -0.018, y: 0.057, z: 0}
+  m_LocalScale: {x: 3.75, y: 3.75, z: 1}
   m_Children: []
   m_Father: {fileID: 450934}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!50 &5045454
 Rigidbody2D:
   serializedVersion: 2
@@ -338,7 +338,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.13
+  m_Radius: 0.1
 --- !u!114 &11404904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -388,6 +388,10 @@ MonoBehaviour:
     HealAmount: 0
     DamagePerTick: 500
     AttackRange: 1
+    Sprites:
+    - {fileID: 21300000, guid: 272dc547157029946a67ba549a3aa012, type: 3}
+    - {fileID: 21300000, guid: baea16599c3d8f246a937984846ae459, type: 3}
+    AttackParticle: {fileID: 0}
   - Type: 1
     Color: {r: 1, g: 0.453, b: 0, a: 1}
     MeleeRange: 1
@@ -397,6 +401,10 @@ MonoBehaviour:
     HealAmount: 0
     DamagePerTick: 1500
     AttackRange: 1
+    Sprites:
+    - {fileID: 21300000, guid: 6ecca416d0d8b8d4fb29c836bf7be8cd, type: 3}
+    - {fileID: 21300000, guid: 8b1ed687d42b56c43af3be194f4a004a, type: 3}
+    AttackParticle: {fileID: 0}
   - Type: 2
     Color: {r: 1, g: 1, b: 0, a: 1}
     MeleeRange: 0
@@ -406,6 +414,12 @@ MonoBehaviour:
     HealAmount: 0
     DamagePerTick: 1000
     AttackRange: 1
+    Sprites:
+    - {fileID: 21300000, guid: c815161237ac88b4f8ee1bbc06875eaa, type: 3}
+    - {fileID: 21300000, guid: d1551dc3497f90940b075338604ae5ef, type: 3}
+    - {fileID: 21300000, guid: ed218d3827ce9174c86fd69d32aede07, type: 3}
+    - {fileID: 21300000, guid: 0c4e4eafbc4790d458c4bdf2a11cfbd6, type: 3}
+    AttackParticle: {fileID: 166782, guid: f1ae53c5198a3f64c8aff8113431fd60, type: 2}
   - Type: 3
     Color: {r: 0, g: 1, b: 0.08965516, a: 1}
     MeleeRange: 0
@@ -415,6 +429,10 @@ MonoBehaviour:
     HealAmount: 25
     DamagePerTick: 100
     AttackRange: 1
+    Sprites:
+    - {fileID: 21300000, guid: a546b29c4c8250d42a0d87665bc76df9, type: 3}
+    - {fileID: 21300000, guid: ec8db3be07067c64bad40abc8033352b, type: 3}
+    AttackParticle: {fileID: 0}
   _type: 0
   SpriteRenderer: {fileID: 21237418}
   Grouping: 0
@@ -11123,9 +11141,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 1, b: 0.048275948, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: ed218d3827ce9174c86fd69d32aede07, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &21254458
@@ -11165,6 +11183,22 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Configs.Array.data[0].Sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Configs.Array.data[1].Sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Configs.Array.data[2].Sprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Configs.Array.data[3].Sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _minDistance
       value: 0.2
@@ -11301,6 +11335,10 @@ Prefab:
       propertyPath: Configs.Array.data[1].IgnoreLightAoe
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Configs.Array.data[2].AttackParticle
+      value: 
+      objectReference: {fileID: 166782, guid: f1ae53c5198a3f64c8aff8113431fd60, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 115954}

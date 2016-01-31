@@ -23,6 +23,9 @@ public class GuildMember : MonoBehaviour
         public int HealAmount = 0;
         public int DamagePerTick = 500;
         public int AttackRange = 1;
+        public Sprite[] Sprites;
+
+        public GameObject AttackParticle;
 
         public GuildMemberConfig PickUpGroupVariant()
         {
@@ -110,7 +113,7 @@ public class GuildMember : MonoBehaviour
         {
             _type = value;
             if (SpriteRenderer != null)
-                SpriteRenderer.color = Config.Color;
+                SpriteRenderer.sprite = Config.Sprites[Random.Range(0, Config.Sprites.Length)];
             if (!Config.MeleeRange)
                 Grouping = Random.Range(1, 3);
             CachedGroups[gameObject] = Grouping;
@@ -170,7 +173,7 @@ public class GuildMember : MonoBehaviour
 
         if (Members.Count == 0)
         {
-            string[] messages = new[] { "you guys suck.", "wow. that went great.", "worst group na.", "this game sucks", "you ar the worst players ive ever scene" };
+            string[] messages = new[] { "you guys suck.", "wow. that went great.", "worst group na.", "this game sucks", "you ar the worst players ive ever scene", "There's no mistakes, just happy accidents." };
             DisplayChatMessage(messages, this);  
 
             yield break;
@@ -334,13 +337,17 @@ public class GuildMember : MonoBehaviour
 
         while (true)
         {
-            var seconds = TimelineController.OffBeatBy() + OneBeat * 2;
-            yield return new WaitForSeconds(seconds);
+            var seconds = OneBeat * 2;
+            yield return new WaitForSeconds(seconds + Random.value);
 
             if (!enabled)
                 yield break;
 
             PlayerInput.Instance.DealDamage(Config.DamagePerTick);
+            if (Config.AttackParticle != null)
+            {
+                Instantiate(Config.AttackParticle, transform.position + Vector3.up*0.2f, Quaternion.identity);
+            }
         }
     }
 

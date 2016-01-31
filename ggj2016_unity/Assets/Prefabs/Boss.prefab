@@ -576,7 +576,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 68c7099b30fa1fd45a846c580aa5c93e, type: 3}
     LoopFromFrame: 0
     AnimType: 1
-  - FrameRate: 6
+  - FrameRate: 10
     Heading: {x: 1, y: 0}
     Frames:
     - {fileID: 21300000, guid: 7910bfd2f0dce4a48934f12466431384, type: 3}
@@ -586,8 +586,20 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 6d95a4d440b7d2c4594f4697c15accf1, type: 3}
     - {fileID: 21300000, guid: d03a90b62b182bb4b9ac1c8eafd4028f, type: 3}
     - {fileID: 21300000, guid: 4969fee7208bef843bce3a9f4094cb8b, type: 3}
-    LoopFromFrame: 0
+    LoopFromFrame: 5
     AnimType: 5
+  - FrameRate: 6
+    Heading: {x: 0, y: -1}
+    Frames:
+    - {fileID: 21300000, guid: f02934bf933d6b54bbc61d562c0dc9d3, type: 3}
+    - {fileID: 21300000, guid: 8334850eafcf6094faa69c64937e00af, type: 3}
+    - {fileID: 21300000, guid: ff1385be159d1fd4fa711cadfa561e6c, type: 3}
+    - {fileID: 21300000, guid: eca8e5406c62c1143a4e230163f18179, type: 3}
+    - {fileID: 21300000, guid: c70651a22562eee488800d753170fb18, type: 3}
+    - {fileID: 21300000, guid: 957ec534ff13e954d961c850c6560014, type: 3}
+    - {fileID: 21300000, guid: 3c8cd470790dc6749b9e81b803fc3c81, type: 3}
+    LoopFromFrame: 6
+    AnimType: 2
   Renderer: {fileID: 21236358}
 --- !u!114 &11464870
 MonoBehaviour:
