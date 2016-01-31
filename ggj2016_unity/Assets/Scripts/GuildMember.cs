@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Contexts;
 using UnitySteer2D.Behaviors;
 
 public class GuildMember : MonoBehaviour
@@ -238,8 +239,10 @@ public class GuildMember : MonoBehaviour
 
     public void EndGameMessage()
     {
+
+        string[] messages = {"GG", "EZ"};
         if(Health > 0)
-            DisplayChatMessage("GG", this);
+            DisplayChatMessage(messages, this);
     }
 
     private void DisplayChatMessage(string message, GuildMember member)
