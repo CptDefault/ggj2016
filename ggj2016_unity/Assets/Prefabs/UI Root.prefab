@@ -3255,6 +3255,8 @@ MonoBehaviour:
   FixedTimelineActionPrefab: {fileID: 146144, guid: 8df4658b13d3aa349945c835b134a450,
     type: 2}
   beatsPerMinute: 31.5
+  music: event:/Music/InGame
+  musicOutOfGame: event:/Music/Idling
   SkipBeats: 2
   hitSound: {fileID: 8300000, guid: f02caae0124755549bb3aa4543d17111, type: 3}
 --- !u!114 &11487274

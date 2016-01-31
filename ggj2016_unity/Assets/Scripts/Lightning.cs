@@ -44,7 +44,7 @@ public class Lightning : MonoBehaviour
 //        lightning1.transform.position = new Vector3(Random.Range(-2,2), 0,0);
 //        lightning2.transform.position = new Vector3(Random.Range(-2, 2), 0, 0);
         
-        audio.PlayOneShot(lightningSound);
+        //audio.PlayOneShot(lightningSound);
         lightningEffects.SetActive(true);
 
         yield return new WaitForSeconds(0.05f);
@@ -54,7 +54,7 @@ public class Lightning : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
         lightningEffects.SetActive(true);
-        audio.PlayOneShot(lightningSound);
+        //audio.PlayOneShot(lightningSound);
 
         yield return new WaitForSeconds(0.05f);
 
@@ -63,7 +63,7 @@ public class Lightning : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
 
-        audio.PlayOneShot(lightningSound);
+        //audio.PlayOneShot(lightningSound);
         lightningEffects.SetActive(true);
 
         yield return new WaitForSeconds(0.05f);
@@ -73,7 +73,7 @@ public class Lightning : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
         lightningEffects.SetActive(true);
-        audio.PlayOneShot(lightningSound);
+        //audio.PlayOneShot(lightningSound);
 
         yield return new WaitForSeconds(0.05f);
 

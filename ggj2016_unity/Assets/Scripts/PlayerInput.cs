@@ -195,10 +195,7 @@ public class PlayerInput : MonoBehaviour
             // die
             if (enabled)
             {
-                foreach (var guildMember in GuildMember.Members)
-                {
-                    guildMember.EndGameMessage();
-                }
+                StartCoroutine(EndGameMessages());
             }
 
 
@@ -213,6 +210,16 @@ public class PlayerInput : MonoBehaviour
         else
         {
 //            DamageNumberManager.DisplayDamageNumber(-damagePerSecond, transform.position, boss: true);            
+        }
+    }
+
+    private IEnumerator EndGameMessages()
+    {
+        foreach (var guildMember in GuildMember.Members)
+        {
+            guildMember.EndGameMessage();
+
+            yield return new WaitForSeconds(Random.Range(0.1f, 1));
         }
     }
 }

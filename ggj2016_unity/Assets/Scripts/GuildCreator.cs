@@ -28,6 +28,8 @@ public class GuildCreator : MonoBehaviour
     FMOD.Studio.EventInstance raidersEv;
     FMOD.Studio.ParameterInstance raidersAttackParam;
 
+    private bool _started = false;
+
     protected void Awake()
     {
         Instance = this;
@@ -50,14 +52,20 @@ public class GuildCreator : MonoBehaviour
         _audioSource.volume = 1;
         TimelineController.Instance.StopBeats();
         FunSystem.Instance.fpsPopupLabel.text = "";
-        if (PlayerInput.Instance.Health <= 0)
+
+        if (_started)
         {
             yield return new WaitForSeconds(2);
             PatchNotes.Instance.ShowFinalGrade();
 
             while (PatchNotes.Instance.gameObject.activeSelf)
                 yield return null;
-            
+        }
+
+        _started = true;
+
+        if (PlayerInput.Instance.Health <= 0)
+        {
             yield return new WaitForSeconds(1);
             PlayerInput.Instance.Respawn();
         }

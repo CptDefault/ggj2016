@@ -170,6 +170,11 @@ public class GuildMember : MonoBehaviour
         ChatBox.Instance.AddChatMessage(string.Format("[{0}]{1}[-] has died", ColorToHex(Config.Color), Name));
 
         healthSprite.gameObject.SetActive(false);
+
+        if (Members.Count == 0)
+        {
+            GuildCreator.Instance.ClearAllDead();
+        }
     }
 
     private IEnumerator DeadMessage()
@@ -375,6 +380,9 @@ public class GuildMember : MonoBehaviour
 
     protected void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+            TakeDamage(Health*2);
+        
         if (healthSprite.gameObject.activeSelf)
         {
             // set health position

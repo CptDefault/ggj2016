@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  SourceProjectPath: E:\Documents\Unity Projects\ggj2016\Total_Bossroom_FMOD\Total_Bossroom_FMOD.fspro
-  SourceBankPath: E:\Documents\Unity Projects\ggj2016\Total_Bossroom_FMOD\Build
+  SourceProjectPath: V:\GGJ16\Total_Bossroom_FMOD\Total_Bossroom_FMOD.fspro
+  SourceBankPath: V:\GGJ16\Total_Bossroom_FMOD\Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   SpeakerModeSettings:

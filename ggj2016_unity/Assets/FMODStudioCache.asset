@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 11459340}
+  - {fileID: 11442996}
   EditorEvents:
-  - {fileID: 11443912}
-  - {fileID: 11424706}
-  - {fileID: 11414502}
-  - {fileID: 11449042}
-  - {fileID: 11400562}
-  - {fileID: 11492834}
-  - {fileID: 11425850}
-  - {fileID: 11439246}
-  - {fileID: 11415130}
-  - {fileID: 11462320}
-  - {fileID: 11446126}
-  MasterBankRef: {fileID: 11459340}
-  stringsBankWriteTime: 635898478740000000
+  - {fileID: 11494594}
+  - {fileID: 11451722}
+  - {fileID: 11431574}
+  - {fileID: 11463862}
+  - {fileID: 11400700}
+  - {fileID: 11470156}
+  - {fileID: 11434572}
+  - {fileID: 11432238}
+  - {fileID: 11404346}
+  - {fileID: 11422566}
+  - {fileID: 11424022}
+  MasterBankRef: {fileID: 11442996}
+  stringsBankWriteTime: 635898529620000000
 --- !u!114 &11400562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,6 +49,49 @@ MonoBehaviour:
   - {fileID: 11455424}
   MinDistance: 1
   MaxDistance: 20
+--- !u!114 &11400700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Music/InGame
+  guid: 8a8c70158e2cef47a48ddb19d45bf83d
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 11444310}
+  MinDistance: 1
+  MaxDistance: 20
+--- !u!114 &11404346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Boss/Boss_Step
+  guid: f37c8fe0fea22f46bd5dddc2f528397c
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 100
 --- !u!114 &11406300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +162,48 @@ MonoBehaviour:
   Name: Attack
   Min: 0
   Max: 1
+--- !u!114 &11422566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Amb_Loop
+  guid: f538aa0deea7e441bc3ad3a851a8966e
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+--- !u!114 &11424022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Idling
+  guid: fbcae7d4738e7447b6bba13f13344f68
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
 --- !u!114 &11424706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +247,69 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 100
+--- !u!114 &11431574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Boss/Boss_Whirlattack
+  guid: 6542cb450010d0489db75e1328b21f72
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 100
+--- !u!114 &11432238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Boss/Boss_OHSmash
+  guid: d9a2df7a61361e4fa650ec29d2e52fbd
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 100
+--- !u!114 &11434572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Boss/Boss_Idling
+  guid: cd79c7561ce92348a7ea69e1254e00f6
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 100
 --- !u!114 &11439246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +331,38 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 100
+--- !u!114 &11442996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: V:\GGJ16\Total_Bossroom_FMOD\Build\Desktop\Master Bank.bank
+  lastModified: 635898529620000000
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 4155872
+  Exists: 1
+--- !u!114 &11443126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Attack
+  Min: 0
+  Max: 1
 --- !u!114 &11443912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +384,20 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 100
+--- !u!114 &11444310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: End
+  Min: 0
+  Max: 1
 --- !u!114 &11446126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +440,28 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 100
+--- !u!114 &11451722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Raiders/Raiders_Loop
+  guid: 1063eb3e28f7d64a8836cb15ae383efd
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 11443126}
+  MinDistance: 5
+  MaxDistance: 200
 --- !u!114 &11455424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +516,48 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
+--- !u!114 &11463862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Boss/Boss_BeenHit
+  guid: 7b0e59a3872cb74da44658a3b693f610
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 100
+--- !u!114 &11470156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Raiders/Raiders_Raiding
+  guid: 95597bef06f69846867fd83002aef58f
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
 --- !u!114 &11492834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,3 +579,24 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
+--- !u!114 &11494594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Boss/Boss_Dash
+  guid: 0c1c562a29e22d4487898f40505d1ab8
+  Banks:
+  - {fileID: 11442996}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 100
