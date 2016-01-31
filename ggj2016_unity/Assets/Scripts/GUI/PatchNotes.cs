@@ -20,6 +20,7 @@ public class PatchNotes : MonoBehaviour
     public AudioSource audio;
     public AudioClip textBlip;
     public AudioClip gradeBlip;
+    public AudioClip confirmClip;
 
     protected void Awake()
     {
@@ -51,7 +52,7 @@ public class PatchNotes : MonoBehaviour
         gradeScale.ResetToBeginning();
         SetText("RAID OVER", "");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         notesLabel.text = string.Format("Final fun p/s: {0} \n", FunSystem.FunPerSecond);
         audio.PlayOneShot(textBlip);
@@ -95,6 +96,7 @@ public class PatchNotes : MonoBehaviour
 
     public void CloseNotes()
     {
+        TimelineController.Instance.PlayOneshot(confirmClip);
         gameObject.SetActive(false);
     }
 }

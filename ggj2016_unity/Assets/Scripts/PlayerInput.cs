@@ -189,6 +189,7 @@ public class PlayerInput : MonoBehaviour
     public void DealDamage(int damagePerSecond)
     {
         Health -= damagePerSecond;
+
         if (Health < 0)
         {
             Health = 0;
@@ -197,6 +198,10 @@ public class PlayerInput : MonoBehaviour
             GetComponent<Rigidbody2D>().isKinematic = true;
             _characterController.Renderer.transform.rotation = Quaternion.Euler(0, 0, 90);
             return;
+        }
+        else
+        {
+//            DamageNumberManager.DisplayDamageNumber(-damagePerSecond, transform.position, boss: true);            
         }
     }
 }

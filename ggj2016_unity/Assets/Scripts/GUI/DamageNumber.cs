@@ -13,9 +13,10 @@ public class DamageNumber : MonoBehaviour
 
     public bool Active;
 
-    public void DisplayNumber(int number, Vector3 position)
+    public void DisplayNumber(int number, Vector3 position, bool boss)
     {
-        StartCoroutine(DisplayNumberCoroutine(number, position));
+//        TimelineController.Instance.PlayHitSound();
+        StartCoroutine(DisplayNumberCoroutine(number, position, boss));
     }
 
     public void DisplayText(string text, Vector3 position)
@@ -24,12 +25,26 @@ public class DamageNumber : MonoBehaviour
         
     }
 
-    private IEnumerator DisplayNumberCoroutine(int number, Vector3 position)
+    private IEnumerator DisplayNumberCoroutine(int number, Vector3 position, bool boss)
     {
         var color = number > 0 ? DamageNumberManager.Instance.positiveColor : DamageNumberManager.Instance.negativeColor;
+        if(boss)
+            color = Color.white;
+
         number = Mathf.Abs(number);
 
         transform.localPosition = position + Vector3.up * 5;
+
+        if (boss)
+        {
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            transform.localPosition = position + Vector3.up*20;
+            transform.localPosition += new Vector3(Random.Range(-80, 80), Random.Range(-80, 80));
+        }
+        else
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
 
         Active = true;
 

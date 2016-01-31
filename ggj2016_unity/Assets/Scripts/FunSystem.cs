@@ -21,9 +21,16 @@ public class FunSystem : MonoBehaviour
     public TweenPosition fpsTweenPositionPositive;
     public TweenPosition fpsTweenPositionNegative;
 
+    // incoming raid
+    public UILabel incomingRaid;
+    public UILabel guildNameLabel;
+    public TweenAlpha guildAlpha;
+
     public void Awake()
     {
         Instance = this;
+        incomingRaid.enabled = false;
+        guildNameLabel.enabled = false;
     }
 
 	// Use this for initialization
@@ -90,4 +97,30 @@ public class FunSystem : MonoBehaviour
 	        IncreaseFun();
 	    }
 	}
+
+    public void IncomingRaid(string guildName)
+    {
+        guildNameLabel.text = guildName;
+        guildAlpha.ResetToBeginning();
+        StartCoroutine(IncomingRaidRoutine());
+    }
+
+    private IEnumerator IncomingRaidRoutine()
+    {
+        incomingRaid.enabled = true;
+        for (int i = 0; i < 10; i++)
+        {
+            incomingRaid.alpha = 0;
+            yield return new WaitForSeconds(0.5f);
+            incomingRaid.alpha = 1;
+        }
+
+        guildNameLabel.enabled = true;
+        guildAlpha.PlayForward();
+
+        yield return new WaitForSeconds(3f);
+
+        incomingRaid.enabled = false;
+        guildNameLabel.enabled = false;
+    }
 }

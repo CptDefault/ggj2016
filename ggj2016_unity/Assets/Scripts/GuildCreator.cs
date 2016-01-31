@@ -59,6 +59,8 @@ public class GuildCreator : MonoBehaviour
         else
             SpawnPickUpGuild();
 
+        FunSystem.Instance.IncomingRaid("GUILD NAME HERE!");
+
         for (float t = 0; t < 0.5f; t += Time.deltaTime)
         {
             _audioSource.volume = 1 - t / 0.5f;

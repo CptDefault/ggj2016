@@ -32,6 +32,18 @@ public class TimelineController : MonoBehaviour
     private int _skipCount;
     public int SkipBeats;
 
+    public AudioClip hitSound;
+
+    public void PlayHitSound()
+    {
+        _audio.PlayOneShot(hitSound);
+    }
+
+    public void PlayOneshot(AudioClip clip)
+    {
+        _audio.PlayOneShot(clip);
+    }
+
     public static float OffBeatBy()
     {
         var time = Instance._audio.time;
