@@ -49,9 +49,9 @@ public class MainMenu : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-//	    if (_ready && Input.anyKey)
-//	    {
-//	        Application.LoadLevel(1);
-//	    }
+	    if (_ready && Input.anyKey)
+	    {
+	        Application.LoadLevel(1);
+	    }
 	}
 }
