@@ -94,10 +94,17 @@ public class GuildMember : MonoBehaviour
     public static GuildMember LeeroyJenkins;
     private Biped2D _biped2D;
     private float _lastFullHealth;
+    public string Name;
 
     public Transform HealParticles;
     private float _jumpHeight;
     private float _jumpMult = 1;
+
+    private static string[] RandomNames =
+    {
+        "CoolWizard69", "MLG-Lord", "Yeezus928", "xXx_JeffRocks_xXx", "MysteryMeat9821", "FererroRochel_95", "MarsBarWarrior", "AlphabetJack", "DeezNuts", "MicrosoftSam", "DolanTremp54", 
+        "Scratch", "Doopy", "Poopy", "Sneezy-2873", "UnwisestDaisy", "MothQueen4eva", "OozyPlace", "TitMonster5000"
+    };
 
     public GuildMemberType MemberType
     {
@@ -111,6 +118,7 @@ public class GuildMember : MonoBehaviour
                 Grouping = Random.Range(1, 3);
             CachedGroups[gameObject] = Grouping;
             Health = Config.MaxHealth;
+
             UpdateHealthBar();
         }
     }
@@ -154,6 +162,8 @@ public class GuildMember : MonoBehaviour
 
         StartCoroutine(DeadMessage());
 
+        ChatBox.Instance.AddChatMessage(string.Format("[{0}]{1}[-] has died", ColorToHex(Config.Color), Name));
+
         healthSprite.gameObject.SetActive(false);
     }
 
@@ -164,7 +174,7 @@ public class GuildMember : MonoBehaviour
         if (Members.Count == 0)
         {
             string[] messages = new[] { "you guys suck.", "wow. that went great.", "worst group na.", "this game sucks", "you ar the worst players ive ever scene", "There's no mistakes, just happy accidents." };
-            DamageNumberManager.DisplayMessage(messages, transform);  
+            DisplayChatMessage(messages, this);  
 
             yield break;
         }
@@ -172,8 +182,10 @@ public class GuildMember : MonoBehaviour
         if (Random.value > 0.5f)
         {
             string[] messages = new[] { "wtf noobs", "res plz", "how i die?", "healer you noob", "wtf learn to tank", "wheres the heals", "filthy casuals", "bilzard plz nerf","At least I have chicken.", "tank uninstall" };
-            DamageNumberManager.DisplayMessage(messages, transform);            
+            DisplayChatMessage(messages, this);            
         }
+
+
     }
 
     public void Heal(int amount)
@@ -213,7 +225,32 @@ public class GuildMember : MonoBehaviour
 
     protected void Start()
     {
+        Name = RandomNames[Random.Range(0, RandomNames.Length - 1)];
+        
         StartCoroutine(IntroRoutine());
+    }
+
+    string ColorToHex(Color32 color)
+    {
+        string hex = color.r.ToString("X2") + color.g.ToString("X2") + color.b.ToString("X2");
+        return hex;
+    }
+ 
+
+    private void DisplayChatMessage(string message, GuildMember member)
+    {
+        DamageNumberManager.DisplayMessage(message, member.gameObject.transform);
+
+        ChatBox.Instance.AddChatMessage(string.Format("[{0}]{1}[-]: {2}", ColorToHex(member.Config.Color), member.Name, message));
+    }
+
+    private void DisplayChatMessage(string[] messages, GuildMember member)
+    {
+        var message = messages[Random.Range(0, messages.Length)];
+
+        DamageNumberManager.DisplayMessage(message, member.gameObject.transform);
+
+        ChatBox.Instance.AddChatMessage(string.Format("[{0}]{1}[-]: {2}", ColorToHex(member.Config.Color), member.Name, message));
     }
 
     private IEnumerator IntroRoutine()
@@ -222,14 +259,16 @@ public class GuildMember : MonoBehaviour
             yield return new WaitForSeconds(3);
         if (LeeroyJenkins == this)
         {
+            Name = "Leeroy Jenkins";
+
             yield return new WaitForSeconds(2);
             var guildLeader = Members[1];
-            DamageNumberManager.DisplayMessage("Okay, so here's the plan", guildLeader.transform);
+            DisplayChatMessage("Okay, so here's the plan", guildLeader);
             yield return new WaitForSeconds(3);
-            DamageNumberManager.DisplayMessage("I'll run in and tank him first", guildLeader.transform);
+            DisplayChatMessage("I'll run in and tank him first", guildLeader);
             yield return new WaitForSeconds(1);
 
-            DamageNumberManager.DisplayMessage("LEEEROY JEEENKIINS", transform);
+            DisplayChatMessage("LEEEROY JEEENKIINS", this);
         }
         else
             yield return new WaitForSeconds(8 + (float)_type * 0.25f);
@@ -247,17 +286,17 @@ public class GuildMember : MonoBehaviour
             var follower = Members[12];
             var follower2 = Members[23];
             yield return new WaitForSeconds(1.5f);
-            DamageNumberManager.DisplayMessage("Oh jeez", guildLeader.transform);
+            DisplayChatMessage("Oh jeez", guildLeader);
             yield return new WaitForSeconds(1f);
-            DamageNumberManager.DisplayMessage("Oh jeez, let's go, let's go!", follower.transform);
+            DisplayChatMessage("Oh jeez, let's go, let's go!", follower);
             yield return new WaitForSeconds(.5f);
-            DamageNumberManager.DisplayMessage("STICK TO THE PLAN!", guildLeader.transform);
+            DisplayChatMessage("STICK TO THE PLAN!", guildLeader);
             yield return new WaitForSeconds(1f);
-            DamageNumberManager.DisplayMessage("Stick to the plan!", follower2.transform);
+            DisplayChatMessage("Stick to the plan!", follower2);
             yield return new WaitForSeconds(4f);
-            DamageNumberManager.DisplayMessage("God damn it Leeroy.", guildLeader.transform);
+            DisplayChatMessage("God damn it Leeroy.", guildLeader);
             yield return new WaitForSeconds(4f);
-            DamageNumberManager.DisplayMessage("At least I have chicken.", transform);
+            DisplayChatMessage("At least I have chicken.", this);
             
         }
     }

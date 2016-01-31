@@ -69,6 +69,18 @@ public class FunSystem : MonoBehaviour
 
         _increaseFunTime = Time.time + 1;
     }
+
+    public static string GetFinalGrade()
+    {
+        if (TotalFun > 20000)
+            return "A+";
+        else if(TotalFun > 10000)
+            return "A";
+        else
+        {
+            return "F";
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

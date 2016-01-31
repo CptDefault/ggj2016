@@ -437,6 +437,7 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 21237418}
   Grouping: 0
   Health: 100
+  Name: 
   HealParticles: {fileID: 471530}
 --- !u!114 &11417504
 MonoBehaviour:

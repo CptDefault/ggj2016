@@ -42,6 +42,12 @@ public class GuildCreator : MonoBehaviour
         if (PlayerInput.Instance.Health <= 0)
         {
             yield return new WaitForSeconds(2);
+            PatchNotes.Instance.ShowFinalGrade();
+
+            while (PatchNotes.Instance.gameObject.activeSelf)
+                yield return null;
+            
+            yield return new WaitForSeconds(1);
             PlayerInput.Instance.Respawn();
         }
 
