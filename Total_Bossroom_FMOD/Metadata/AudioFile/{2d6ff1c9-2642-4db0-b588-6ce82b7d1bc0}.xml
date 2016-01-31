@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{2d6ff1c9-2642-4db0-b588-6ce82b7d1bc0}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.8117913832199547</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/torch_whoosh09 {966fd455-5e85-4a31-a401-c28b1f5c6c0a}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{fb16ee28-fe7a-4433-9611-0c9a154bc4f2}</destination>
+        </relationship>
+    </object>
+</objects>

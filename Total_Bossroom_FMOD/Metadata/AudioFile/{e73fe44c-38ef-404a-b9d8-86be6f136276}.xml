@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{e73fe44c-38ef-404a-b9d8-86be6f136276}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>17.142854166666666</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/GGj16 - Strictly Bossroom - Orchestral layer 5 {d369528b-5d98-437a-a7be-c664b509c3aa}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{fb16ee28-fe7a-4433-9611-0c9a154bc4f2}</destination>
+        </relationship>
+    </object>
+</objects>

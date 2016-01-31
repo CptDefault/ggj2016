@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{65f3f5fa-31b3-40ce-8fc6-0a00c9780215}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>10.875520833333333</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/WIND_WHISTLING_LOOP01_edited {2c76a85b-a004-4ee2-8c6e-94ee5367bb66}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{fb16ee28-fe7a-4433-9611-0c9a154bc4f2}</destination>
+        </relationship>
+    </object>
+</objects>

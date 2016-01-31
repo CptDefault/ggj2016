@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{1bd0a708-c4a6-49fe-9b21-de0ccf24f820}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>0.43029478458049886</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/sword_small_clang15 {6c85762f-398a-4176-b362-b1e1e83eaad3}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{fb16ee28-fe7a-4433-9611-0c9a154bc4f2}</destination>
+        </relationship>
+    </object>
+</objects>

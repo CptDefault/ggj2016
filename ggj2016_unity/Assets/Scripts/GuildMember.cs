@@ -84,6 +84,10 @@ public class GuildMember : MonoBehaviour
 
     public Collider2D Collider { get; private set; }
 
+
+    [FMODUnity.EventRef]
+    public string bossBeenHitSound = "event:/Boss/Boss_BeenHit";
+
     [SerializeField]
     private GuildMemberType _type;
 
@@ -350,7 +354,7 @@ public class GuildMember : MonoBehaviour
             var seconds = OneBeat * 2;
             yield return new WaitForSeconds(seconds + Random.value);
 
-            if (!enabled)
+            if (!enabled || PlayerInput.Instance.Health <= 0)
                 yield break;
 
             PlayerInput.Instance.DealDamage(Config.DamagePerTick);
@@ -358,6 +362,8 @@ public class GuildMember : MonoBehaviour
             {
                 Instantiate(Config.AttackParticle, transform.position + Vector3.up*0.2f, Quaternion.identity);
             }
+            if(Config.MeleeRange)
+                FMODUnity.RuntimeManager.PlayOneShot(bossBeenHitSound, Camera.main.transform.position);
         }
     }
 

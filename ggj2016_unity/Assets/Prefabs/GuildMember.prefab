@@ -399,7 +399,7 @@ MonoBehaviour:
     MaxHealth: 140
     DamageMultiplyer: 1
     HealAmount: 0
-    DamagePerTick: 150000
+    DamagePerTick: 1500
     AttackRange: 1
     Sprites:
     - {fileID: 21300000, guid: 6ecca416d0d8b8d4fb29c836bf7be8cd, type: 3}
@@ -433,6 +433,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a546b29c4c8250d42a0d87665bc76df9, type: 3}
     - {fileID: 21300000, guid: ec8db3be07067c64bad40abc8033352b, type: 3}
     AttackParticle: {fileID: 0}
+  bossBeenHitSound: event:/Boss/Boss_BeenHit
   _type: 0
   SpriteRenderer: {fileID: 21237418}
   Grouping: 0
@@ -11325,7 +11326,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Configs.Array.data[1].DamagePerTick
-      value: 150000
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Configs.Array.data[2].DamagePerTick

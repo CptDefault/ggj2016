@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using FMOD.Studio;
 
 public class GuildCreator : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class GuildCreator : MonoBehaviour
     private AudioSource _audioSource;
     public bool EndlessMode;
 
+    [FMODUnity.EventRef]
+    public string raiders = "event:/Raiders/Raiders_Loop";
+    FMOD.Studio.EventInstance raidersEv;
+    FMOD.Studio.ParameterInstance raidersAttackParam;
+
     protected void Awake()
     {
         Instance = this;
@@ -31,6 +37,10 @@ public class GuildCreator : MonoBehaviour
 
     protected void Start()
     {
+        
+        raidersEv = FMODUnity.RuntimeManager.CreateInstance(raiders);
+        raidersEv.getParameter("Attack", out raidersAttackParam);
+
         StartCoroutine(PregameMockup());
     }
 
@@ -55,6 +65,11 @@ public class GuildCreator : MonoBehaviour
         yield return new WaitForSeconds(intermission);
         TimelineController.Instance.StartBeats();
         yield return new WaitForSeconds(0.5f);
+
+        raidersAttackParam.setValue(0);
+
+        raidersEv.start();
+
         if (!EnablePUG)
             SpawnGuild();
         else
@@ -75,6 +90,9 @@ public class GuildCreator : MonoBehaviour
                 yield return null;
             SpawnGuild();            
         }
+
+        yield return new WaitForSeconds(5);
+        raidersAttackParam.setValue(1);
     }
 
     public void ClearAllDead()
@@ -84,6 +102,8 @@ public class GuildCreator : MonoBehaviour
             if (member != null) Destroy(member.gameObject);
         }
         GuildMember.DeadMembers.Clear();
+
+        raidersEv.stop(STOP_MODE.ALLOWFADEOUT);
 
         StartCoroutine(PregameMockup(10));
     }
