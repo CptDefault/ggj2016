@@ -75,13 +75,13 @@ public class DamageNumberManager : MonoBehaviour
     {
         DisplayMessage(message[Random.Range(0, message.Length)], track);
     }
+
     public static void DisplayMessage(string message, Transform track)
     {
         if (_messagePool.Count == 0)
         {
             WarmMessagePool();
         }
-
 
         Instance.StartCoroutine(DisplayTextCoroutine(message, track));
     }

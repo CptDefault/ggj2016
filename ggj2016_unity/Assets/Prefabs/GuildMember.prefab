@@ -395,7 +395,7 @@ MonoBehaviour:
     MaxHealth: 140
     DamageMultiplyer: 1
     HealAmount: 0
-    DamagePerTick: 150000
+    DamagePerTick: 1500
     AttackRange: 1
   - Type: 2
     Color: {r: 1, g: 1, b: 0, a: 1}
@@ -419,6 +419,7 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 21237418}
   Grouping: 0
   Health: 100
+  Name: 
   HealParticles: {fileID: 471530}
 --- !u!114 &11417504
 MonoBehaviour:
@@ -11290,7 +11291,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Configs.Array.data[1].DamagePerTick
-      value: 150000
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Configs.Array.data[2].DamagePerTick

@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 453010}
   - 114: {fileID: 11418984}
+  - 114: {fileID: 11470284}
   m_Layer: 15
   m_Name: Chat
   m_TagString: Untagged
@@ -564,7 +565,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494130}
@@ -602,7 +603,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -695, y: -427, z: 0}
+  m_LocalPosition: {x: -696, y: -426, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 484592}
@@ -717,7 +718,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -448, z: 0}
+  m_LocalPosition: {x: 0, y: -447, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 444348}
@@ -733,7 +734,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 262, y: -66, z: 0}
+  m_LocalPosition: {x: 308, y: -66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 453010}
@@ -757,7 +758,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498958}
@@ -774,7 +775,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 669, y: -450, z: 0}
+  m_LocalPosition: {x: 623, y: -450, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 448460}
@@ -814,7 +815,7 @@ Transform:
   m_GameObject: {fileID: 186126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 0.0018501388, y: 0.0018501388, z: 0.0018501388}
+  m_LocalScale: {x: 0.0018518518, y: 0.0018518518, z: 0.0018518518}
   m_Children:
   - {fileID: 442062}
   - {fileID: 443228}
@@ -1542,13 +1543,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 514
+  mWidth: 606
   mHeight: 126
   mDepth: 15
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.0793653
+  aspectRatio: 4.8095236
 --- !u!114 &11422850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1624,13 +1625,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1938
+  mWidth: 1940
   mHeight: 38
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 51
+  aspectRatio: 51.05263
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -2551,6 +2552,18 @@ MonoBehaviour:
   mAtlas: {fileID: 11432852, guid: ff6342e3b21f4469cb4a97c948e1b1c5, type: 2}
   mSpriteName: healthBarBG
   mFillCenter: 1
+--- !u!114 &11470284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc1a21fcec61064885c12862de3d66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chatLabel: {fileID: 11494868}
 --- !u!114 &11473420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3079,15 +3092,15 @@ MonoBehaviour:
     relative: 1
     absolute: 13
   updateAnchors: 1
-  mColor: {r: 0, g: 0, b: 0, a: 0.153}
+  mColor: {r: 0, g: 0, b: 0, a: 0.653}
   mPivot: 4
-  mWidth: 572
+  mWidth: 664
   mHeight: 152
   mDepth: 16
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.7631578
+  aspectRatio: 4.368421
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -3170,22 +3183,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 8
-  mWidth: 550
+  mWidth: 642
   mHeight: 132
   mDepth: 17
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.1666665
+  aspectRatio: 4.8636365
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11499086, guid: 5b4c1536ad0859748a8200928d8785de, type: 2}
-  mText: 'Bob: Hello!
-
-    Jeff: What''s up
-
-    carl: hi there everyone'
-  mFontSize: 16
+  mText: 
+  mFontSize: 20
   mFontStyle: 0
   mAlignment: 0
   mEncoding: 1
