@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 
 public class TimelineController : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class TimelineController : MonoBehaviour
     private float _actionSpawnInterval;
     private int _beatsPlayed = 0;
 
+    [FMODUnity.EventRef]
+    public string music = "event:/Music/InGame";
+    FMOD.Studio.EventInstance musicEv;
+    FMOD.Studio.ParameterInstance musicEndParam;
+    public string musicOutOfGame = "event:/Music/Idling";
+
     public float ActionSpawnInterval
     {
         get { return _actionSpawnInterval; }
@@ -25,16 +32,17 @@ public class TimelineController : MonoBehaviour
 
     public static float TimeInBeats
     {
-        get { return Instance._audio.time / 60 * Instance.beatsPerMinute * 4; }
+        get { return Instance.AudioTime / 60 * Instance.beatsPerMinute * 4; }
     }
 
-    private AudioSource _audio;
+    //private AudioSource _audio;
     private int _skipCount;
     public int SkipBeats;
+    private float _audioStartTime = -1;
 
     public static float OffBeatBy()
     {
-        var time = Instance._audio.time;
+        var time = Instance.AudioTime;
         time %= 60f/Instance.beatsPerMinute;
         if (time > 60f/Instance.beatsPerMinute/2)
             time -= 60f/Instance.beatsPerMinute;
@@ -49,29 +57,46 @@ public class TimelineController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 	    _actions = new List<TimelineAction>();
-	    _audio = GetComponent<AudioSource>();
+	    //_audio = GetComponent<AudioSource>();
 
 	    _actionSpawnInterval = 60f/beatsPerMinute;
+
+
+        musicEv = FMODUnity.RuntimeManager.CreateInstance(music);
+        musicEv.getParameter("End", out musicEndParam);
 
         //StartBeats();
 	}
 
     public void StartBeats()
     {
-        _audio.Play();
-
+        //_audio.Play();
+        //_audio.volume = 0.1f;
         _beatsPlayed = 0;
         _skipCount = SkipBeats + 1;
+        //FMODUnity.RuntimeManager.PlayOneShot(music, Camera.main.transform.position);
+        musicEv.start();
+
+        _audioStartTime = Time.time;
         CreateNewAction();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (_audio.isPlaying && (_actions.Count > 0 || _skipCount >= 0) && _audio.time >= _actionSpawnTimer && PlayerInput.Instance.Health > 0)
+        if (AudioTime >= 0 && (_actions.Count > 0 || _skipCount >= 0) && AudioTime >= _actionSpawnTimer && PlayerInput.Instance.Health > 0)
 	    {
 	        CreateNewAction();
 	    }
 	}
+
+    private float AudioTime
+    {
+        get
+        {
+            return _audioStartTime >= 0 ? Time.time - _audioStartTime : -1;
+            //_audio.time; 
+        }
+    }
 
     private void CreateNewAction()
     {
@@ -99,7 +124,11 @@ public class TimelineController : MonoBehaviour
     public void StopBeats()
     {
         print("Stop the audio?");
-        _audio.Stop();
-        
+        //_audio.Stop();
+        musicEv.stop(STOP_MODE.ALLOWFADEOUT);
+
+        _audioStartTime = -1;
+        //FMODUnity.RuntimeManager.PlayOneShot(musicOutOfGame, Camera.main.transform.position);
+
     }
 }

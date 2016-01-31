@@ -19,6 +19,14 @@ public class BossAttacks : MonoBehaviour
     public AOE[] NonStrictAoe = new AOE[4];
     private CharacterController _characterController;
 
+
+    [FMODUnity.EventRef]
+    public string bossOverheadSound = "event:/Boss/Boss_OHSmash";
+    [FMODUnity.EventRef]
+    public string bossWhirlwindSound = "event:/Boss/Boss_Whirlattack";
+    [FMODUnity.EventRef]
+    public string bossDashSound = "event:/Boss/Boss_Dash";
+
     protected void Awake()
     {
         _characterController = GetComponent<CharacterController>();        
@@ -51,13 +59,18 @@ public class BossAttacks : MonoBehaviour
         {
             case Attacks.Smash:
                 damage = 50*13; //Team damage; expect to hit about 13
-                yield return new WaitForSeconds(TimelineController.OffBeatBy() + OneBeat * 3f);
+                yield return new WaitForSeconds(TimelineController.OffBeatBy());
+                yield return new WaitForSeconds(OneBeat * 2f);
+                FMODUnity.RuntimeManager.PlayOneShot(bossOverheadSound, Camera.main.transform.position);
+                yield return new WaitForSeconds(OneBeat * 1f);
                 aoe.DealDamage(damage);
+
                 ScreenShakeManager.ScreenShake(3);
                 yield return new WaitForSeconds(0.2f);
                 break;
             case Attacks.Whirlwind:
                 int tickAmount = 15;
+                FMODUnity.RuntimeManager.PlayOneShot(bossWhirlwindSound, Camera.main.transform.position);
                 for (int i = 0; i < tickAmount; i++)
                 {
                     yield return new WaitForSeconds((i == 0 ? TimelineController.OffBeatBy() : 0) + OneBeat/4);
@@ -68,6 +81,7 @@ public class BossAttacks : MonoBehaviour
             case Attacks.Dash:
                 heading.Normalize();
                 float goUntil = Time.time + TimelineController.OffBeatBy() + OneBeat;
+                FMODUnity.RuntimeManager.PlayOneShot(bossDashSound, Camera.main.transform.position);
                 while (Time.time < goUntil)
                 {
                     _characterController.SetDesiredSpeed(heading, true);
@@ -76,6 +90,7 @@ public class BossAttacks : MonoBehaviour
                 }
                 break;
             case Attacks.Throw:
+                FMODUnity.RuntimeManager.PlayOneShot(bossDashSound, Camera.main.transform.position);
                 Debug.Log("Start throw");
                 yield return new WaitForSeconds(TimelineController.OffBeatBy() + OneBeat * 2);
                 Debug.Log("End throw");
