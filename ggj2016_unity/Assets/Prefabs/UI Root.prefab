@@ -545,7 +545,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494130}
@@ -583,7 +583,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -695, y: -428, z: 0}
+  m_LocalPosition: {x: -695, y: -427, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 484592}
@@ -660,7 +660,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -340, z: 0}
+  m_LocalPosition: {x: 0, y: -339, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 472464}
@@ -698,7 +698,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -450, z: 0}
+  m_LocalPosition: {x: 0, y: -448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 444348}
@@ -911,7 +911,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -340, z: 0}
+  m_LocalPosition: {x: 0, y: -339, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 431920}
@@ -1515,13 +1515,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1939
+  mWidth: 1938
   mHeight: 38
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 51
+  aspectRatio: 51.026318
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1788,6 +1788,10 @@ MonoBehaviour:
   speed: 200
   successColor: {r: 0.16911763, g: 1, b: 0.31237325, a: 1}
   failColor: {r: 0.71323526, g: 0, b: 0, a: 1}
+  IsFixed: 0
+  fixedLength: 0
+  fixedAction: 0
+  mashLabels: {fileID: 0}
 --- !u!114 &11440600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2715,6 +2719,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimelineActionPrefab: {fileID: 100086, guid: 287c664794be164458e872ec0d21aac7, type: 2}
+  FixedTimelineActionPrefab: {fileID: 146144, guid: 8df4658b13d3aa349945c835b134a450,
+    type: 2}
   beatsPerMinute: 31.5
   SkipBeats: 2
 --- !u!114 &11487274
