@@ -76,13 +76,14 @@ public class GuildMember : MonoBehaviour
 
     public static Dictionary<GameObject, int> CachedGroups = new Dictionary<GameObject, int>();
     public static List<GuildMember> Members = new List<GuildMember>();
+    public static List<GuildMember> DeadMembers = new List<GuildMember>();
 
     public Collider2D Collider { get; private set; }
 
     [SerializeField]
     private GuildMemberType _type;
-    
-    private SpriteRenderer _spriteRenderer;
+
+    public SpriteRenderer SpriteRenderer;
     private SteerForBoss _steerForBoss;
     public int Grouping;
     public int Health = 100;
@@ -92,6 +93,8 @@ public class GuildMember : MonoBehaviour
     private float _lastFullHealth;
 
     public Transform HealParticles;
+    private float _jumpHeight;
+    private float _jumpMult = 1;
 
     public GuildMemberType MemberType
     {
@@ -99,8 +102,8 @@ public class GuildMember : MonoBehaviour
         set
         {
             _type = value;
-            if (_spriteRenderer != null)
-                _spriteRenderer.color = Config.Color;
+            if (SpriteRenderer != null)
+                SpriteRenderer.color = Config.Color;
             if (!Config.MeleeRange)
                 Grouping = Random.Range(1, 3);
             CachedGroups[gameObject] = Grouping;
@@ -138,11 +141,12 @@ public class GuildMember : MonoBehaviour
     private void Dead()
     {
         _biped2D.enabled = false;
-        _spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 90);
+        SpriteRenderer.transform.rotation = Quaternion.Euler(0, 0, 90);
         _biped2D.Rigidbody.isKinematic = true;
         _biped2D.Collider.enabled = false;
         CachedGroups.Remove(gameObject);
         Members.Remove(this);
+        DeadMembers.Add(this);
         enabled = false;
 
         StartCoroutine(DeadMessage());
@@ -164,7 +168,7 @@ public class GuildMember : MonoBehaviour
 
         if (Random.value > 0.5f)
         {
-            string[] messages = new[] { "wtf noobs", "res plz", "how i die?", "healer you noob", "wtf learn to tank", "wheres the heals", "filthy casuals", "bilzard plz nerf","At least I have chicken." };
+            string[] messages = new[] { "wtf noobs", "res plz", "how i die?", "healer you noob", "wtf learn to tank", "wheres the heals", "filthy casuals", "bilzard plz nerf","At least I have chicken.", "tank uninstall" };
             DamageNumberManager.DisplayMessage(messages, transform);            
         }
     }
@@ -184,7 +188,7 @@ public class GuildMember : MonoBehaviour
 
     protected void Awake()
     {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if(SpriteRenderer == null) SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _biped2D = GetComponent<Biped2D>();
         _steerForBoss = GetComponent<SteerForBoss>();
         Collider = GetComponent<Collider2D>();
@@ -193,6 +197,9 @@ public class GuildMember : MonoBehaviour
         Members.Add(this);
 
         healthSprite = DamageNumberManager.GetGuildHealthBar();
+
+        _jumpHeight = Random.Range(0.1f, 0.15f);
+
     }
 
     protected void OnDestroy()
@@ -257,7 +264,6 @@ public class GuildMember : MonoBehaviour
         while (true)
         {
             var seconds = TimelineController.OffBeatBy() + OneBeat * 2;
-            Debug.Log("Heal routine waiting for " + seconds);
             yield return new WaitForSeconds(seconds);
 
             if(!enabled)
@@ -323,6 +329,12 @@ public class GuildMember : MonoBehaviour
 
             healthSprite.transform.localPosition = screenPos + new Vector3(-healthSprite.width/2f, 40);
         }
+
+        _jumpMult = Mathf.Lerp(_jumpMult, 2 - (Health / Config.MaxHealth), Time.deltaTime * 4);
+
+        var f = TimelineController.TimeInBeats * 2 * Mathf.PI;
+        SpriteRenderer.transform.localPosition = new Vector3(0, 0.084f + Mathf.Abs(Mathf.Sin(f)) * _jumpHeight * _jumpMult, 0);
+        SpriteRenderer.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Sin(f) * 10 * _jumpMult);
     }
 
     private void UpdateHealthBar()

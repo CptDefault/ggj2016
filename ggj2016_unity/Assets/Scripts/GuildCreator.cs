@@ -34,9 +34,18 @@ public class GuildCreator : MonoBehaviour
         StartCoroutine(PregameMockup());
     }
 
-    private IEnumerator PregameMockup()
+    private IEnumerator PregameMockup(float intermission = 1)
     {
-        yield return new WaitForSeconds(1);
+        _audioSource.Play();
+        _audioSource.volume = 1;
+        TimelineController.Instance.StopBeats();
+        if (PlayerInput.Instance.Health <= 0)
+        {
+            yield return new WaitForSeconds(2);
+            PlayerInput.Instance.Respawn();
+        }
+
+        yield return new WaitForSeconds(intermission);
         TimelineController.Instance.StartBeats();
         yield return new WaitForSeconds(0.5f);
         if (!EnablePUG)
@@ -57,6 +66,17 @@ public class GuildCreator : MonoBehaviour
                 yield return null;
             SpawnGuild();            
         }
+    }
+
+    public void ClearAllDead()
+    {
+        foreach (var member in GuildMember.DeadMembers)
+        {
+            if (member != null) Destroy(member.gameObject);
+        }
+        GuildMember.DeadMembers.Clear();
+
+        StartCoroutine(PregameMockup(10));
     }
 
     public void SpawnGuild()

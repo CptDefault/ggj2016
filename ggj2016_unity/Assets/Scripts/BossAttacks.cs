@@ -44,6 +44,7 @@ public class BossAttacks : MonoBehaviour
 
         yield return new WaitForSeconds(TimelineController.OffBeatBy());
         aoe.gameObject.SetActive(true);
+        _characterController.WeaponAnimation = CharacterController.AnimType.Smash + (int)attack;
 
         var damage = 50;
         switch (attack)
@@ -54,7 +55,7 @@ public class BossAttacks : MonoBehaviour
                 aoe.DealDamage(damage);
                 break;
             case Attacks.Whirlwind:
-                int tickAmount = 7;
+                int tickAmount = 15;
                 for (int i = 0; i < tickAmount; i++)
                 {
                     yield return new WaitForSeconds((i == 0 ? TimelineController.OffBeatBy() : 0) + OneBeat/4);
@@ -75,6 +76,8 @@ public class BossAttacks : MonoBehaviour
                 aoe.DealDamage(damage);
                 break;
         }
+
+        _characterController.WeaponAnimation = CharacterController.AnimType.Idle;
         aoe.gameObject.SetActive(false);
     }
 }

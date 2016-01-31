@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using InControl;
 using UnityEngine;
 
@@ -150,7 +151,24 @@ public class PlayerInput : MonoBehaviour
 
     public void Respawn() {
         Alive = true;
-        DamageSprite.enabled = true;
+        if (DamageSprite != null) DamageSprite.enabled = true;
+
+        Health = _maxHealth;
+        enabled = true;
+        _characterController.enabled = true;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        _characterController.Renderer.transform.rotation = Quaternion.identity;
+        GetComponent<Collider2D>().enabled = true;
+        StartCoroutine(FlashIn());
+    }
+
+    private IEnumerator FlashIn()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            _characterController.Renderer.enabled = i % 2 != 0;
+            yield return new WaitForSeconds(2f/(16 - i));
+        }
     }
 
 

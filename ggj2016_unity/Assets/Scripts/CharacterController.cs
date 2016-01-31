@@ -10,7 +10,11 @@ public class CharacterController : MonoBehaviour
     {
         Idle,
         Move,
-        Dance
+
+        Smash,
+        Throw,
+        Dash,
+        Whirlwind
     }
 
     [Serializable]
@@ -19,6 +23,8 @@ public class CharacterController : MonoBehaviour
         public float FrameRate = 12;
         public Vector2 Heading;
         public Sprite[] Frames;
+
+        public int LoopFromFrame = 0;
 
         public AnimType AnimType;
     }
@@ -33,6 +39,10 @@ public class CharacterController : MonoBehaviour
     public Animation[] Anims;
 
     public SpriteRenderer Renderer;
+
+    public AnimType WeaponAnimation {set { _currentAnim = value;
+        _frameNumber = 0;
+    }}
 
     private Rigidbody2D _rigid;
     private Vector2 _desiredSpeed;
@@ -82,7 +92,7 @@ public class CharacterController : MonoBehaviour
 
         _rigid.velocity = speed;
 
-        if(_currentAnim != AnimType.Dance)
+        if(_currentAnim == AnimType.Idle || _currentAnim == AnimType.Move)
         if (speed.sqrMagnitude > 0.2f != (_currentAnim == AnimType.Move))
         {
             _frameNumber = 0;
@@ -132,7 +142,12 @@ public class CharacterController : MonoBehaviour
                 _frameTicker -= 1 / a.FrameRate;
             }
 
-            _frameNumber %= a.Frames.Length;
+            if (_frameNumber >= a.Frames.Length)
+            {
+                _frameNumber = a.LoopFromFrame;
+            }
+
+            //_frameNumber %= a.Frames.Length;
             Renderer.sprite = a.Frames[_frameNumber];
         }
 

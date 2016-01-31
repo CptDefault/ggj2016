@@ -73,7 +73,7 @@ public class FunSystem : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
-	    if (Time.time > _increaseFunTime)
+	    if (Time.time > _increaseFunTime && PlayerInput.Instance.Health > 0)
 	    {
 	        IncreaseFun();
 	    }

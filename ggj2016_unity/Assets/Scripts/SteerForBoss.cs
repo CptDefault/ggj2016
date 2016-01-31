@@ -75,6 +75,11 @@ public class SteerForBoss : Steering2D
         while (transform.position.x < 12)
             yield return null;
 
+        if (GuildMember.Members.Count <= 1)
+        {
+            GuildCreator.Instance.ClearAllDead();
+        }
+
         Destroy(gameObject);
 
     }

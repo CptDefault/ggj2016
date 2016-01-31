@@ -22,6 +22,11 @@ public class TimelineController : MonoBehaviour
         get { return _actionSpawnInterval; }
     }
 
+    public static float TimeInBeats
+    {
+        get { return Instance._audio.time / 60 * Instance.beatsPerMinute * 4; }
+    }
+
     private AudioSource _audio;
     private int _skipCount;
     public int SkipBeats;
@@ -61,7 +66,7 @@ public class TimelineController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        if (_audio.isPlaying && (_actions.Count > 0 || _skipCount >= 0) && _audio.time >= _actionSpawnTimer)
+        if (_audio.isPlaying && (_actions.Count > 0 || _skipCount >= 0) && _audio.time >= _actionSpawnTimer && PlayerInput.Instance.Health > 0)
 	    {
 	        CreateNewAction();
 	    }
@@ -88,5 +93,12 @@ public class TimelineController : MonoBehaviour
         _beatsPlayed++;
 
         _actionSpawnTimer = (_beatsPlayed + 0.5f) * _actionSpawnInterval;
+    }
+
+    public void StopBeats()
+    {
+        print("Stop the audio?");
+        _audio.Stop();
+        
     }
 }
